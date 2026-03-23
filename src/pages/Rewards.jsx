@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { mockClient, mockRewards } from '../data/mock'
 
+const rewardIcons = { discount_percent: '✨', discount_fixed: '💰', free_service: '💎' }
+
 export default function Rewards() {
   const [toast, setToast] = useState(null)
 
   const handleRedeem = (reward) => {
     if (mockClient.points_balance >= reward.points_required) {
-      setToast(`${reward.name} demandé!`)
+      setToast(`${reward.name} demandé avec succès!`)
       setTimeout(() => setToast(null), 3000)
     }
   }
@@ -15,33 +17,51 @@ export default function Rewards() {
     <div className="page-content">
       {toast && <div className="toast">{toast}</div>}
 
-      <div style={{ textAlign: 'center', padding: '16px 0' }}>
-        <p style={{ fontSize: 14, color: 'var(--text-light)' }}>Votre solde</p>
-        <p style={{ fontSize: 36, fontWeight: 800, color: 'var(--primary)' }}>{mockClient.points_balance} pts</p>
+      <div style={{ textAlign: 'center', padding: '20px 0 8px' }}>
+        <div style={{ fontSize: 13, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 600 }}>
+          Votre solde
+        </div>
+        <div style={{ fontSize: 44, fontWeight: 800, color: 'var(--primary)', marginTop: 4 }}>
+          {mockClient.points_balance}
+        </div>
+        <div style={{ fontSize: 13, color: 'var(--text-light)', marginTop: 2 }}>points disponibles</div>
       </div>
 
-      <h3 className="section-title">Récompenses disponibles</h3>
+      <div className="gold-line" style={{ margin: '16px auto 28px' }} />
+
+      <div className="section-title">Récompenses</div>
 
       {mockRewards.map(reward => {
         const canRedeem = mockClient.points_balance >= reward.points_required
         const progress = Math.min(100, (mockClient.points_balance / reward.points_required) * 100)
+        const remaining = reward.points_required - mockClient.points_balance
 
         return (
           <div key={reward.id} className="reward-card">
-            <div className="reward-info">
-              <h3>{reward.name}</h3>
-              <p className="reward-points">{reward.points_required} points requis</p>
-              <div className="reward-progress">
-                <div className="reward-progress-bar" style={{ width: `${progress}%` }} />
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
+              <div style={{
+                fontSize: 28, width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'var(--bg-warm)', borderRadius: 'var(--radius-sm)', flexShrink: 0
+              }}>
+                {rewardIcons[reward.type]}
+              </div>
+              <div style={{ flex: 1 }}>
+                <div className="reward-info">
+                  <h3>{reward.name}</h3>
+                  <p className="reward-points">{reward.points_required.toLocaleString()} points</p>
+                </div>
+                <div className="reward-progress">
+                  <div className="reward-progress-bar" style={{ width: `${progress}%` }} />
+                </div>
               </div>
             </div>
             <button
-              className={`btn ${canRedeem ? 'btn-primary' : 'btn-secondary'} btn-small`}
-              style={{ marginTop: 12 }}
+              className={`btn ${canRedeem ? 'btn-accent' : 'btn-secondary'} btn-small`}
+              style={{ marginTop: 16, width: '100%' }}
               disabled={!canRedeem}
               onClick={() => handleRedeem(reward)}
             >
-              {canRedeem ? 'Échanger' : `${reward.points_required - mockClient.points_balance} pts manquants`}
+              {canRedeem ? 'Échanger maintenant' : `Encore ${remaining} points`}
             </button>
           </div>
         )
