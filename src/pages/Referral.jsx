@@ -1,35 +1,76 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import QRCode from 'react-qr-code'
 import { mockClient, mockReferrals } from '../data/mock'
-import { Copy, Check, Share2, MessageCircle, Send } from 'lucide-react'
+import { Copy, Check, Share2, UserPlus } from 'lucide-react'
 
 export default function Referral() {
   const [copied, setCopied] = useState(false)
+  const [toast, setToast] = useState(null)
+  const linkRef = useRef(null)
+
   const baseUrl = window.location.origin + window.location.pathname
   const referralLink = `${baseUrl}?ref=${mockClient.referral_code}`
+  const shareText = `Rejoins le programme fidélité de l'Institut d'Épilation Laser et obtiens 75 points gratuits!`
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(referralLink).catch(() => {})
+  const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 2500) }
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(referralLink)
+    } catch {
+      // Fallback: select text from hidden input
+      if (linkRef.current) {
+        linkRef.current.select()
+        document.execCommand('copy')
+      }
+    }
     setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    showToast('Lien copié!')
+    setTimeout(() => setCopied(false), 2500)
   }
 
-  const handleShare = (platform) => {
-    const text = `Rejoins le programme fidélité de l'Institut d'Épilation Laser et obtiens 75 points gratuits! ${referralLink}`
-    const encodedText = encodeURIComponent(text)
-
-    const urls = {
-      sms: `sms:?body=${encodedText}`,
-      whatsapp: `https://wa.me/?text=${encodedText}`,
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}&quote=${encodeURIComponent('Rejoins le programme fidélité de l\'Institut d\'Épilation Laser!')}`,
+  const handleNativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Programme Fidélité — Institut d\'Épilation Laser',
+          text: shareText,
+          url: referralLink,
+        })
+        showToast('Partagé avec succès!')
+      } catch (err) {
+        if (err.name !== 'AbortError') handleCopy()
+      }
+    } else {
+      handleCopy()
     }
+  }
 
-    window.open(urls[platform], '_blank')
+  const handleShareSMS = () => {
+    const body = encodeURIComponent(`${shareText} ${referralLink}`)
+    window.location.href = `sms:?&body=${body}`
+  }
+
+  const handleShareWhatsApp = () => {
+    const text = encodeURIComponent(`${shareText} ${referralLink}`)
+    window.location.href = `https://wa.me/?text=${text}`
+  }
+
+  const handleShareFacebook = () => {
+    const url = encodeURIComponent(referralLink)
+    window.location.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`
   }
 
   return (
     <div className="page-content">
-      {copied && <div className="toast">Lien copié!</div>}
+      {toast && <div className="toast">{toast}</div>}
+      <input
+        ref={linkRef}
+        value={referralLink}
+        readOnly
+        style={{ position: 'absolute', left: '-9999px' }}
+        aria-hidden="true"
+      />
 
       <div style={{ textAlign: 'center', padding: '20px 0 8px' }}>
         <div style={{
@@ -37,7 +78,7 @@ export default function Referral() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           margin: '0 auto 16px', color: 'var(--accent-dark)'
         }}>
-          <Share2 size={28} />
+          <UserPlus size={28} />
         </div>
         <h2 style={{ fontSize: 22, fontWeight: 700 }}>Parrainez, gagnez</h2>
         <p style={{ fontSize: 14, color: 'var(--text-light)', marginTop: 6, lineHeight: 1.5 }}>
@@ -57,20 +98,33 @@ export default function Referral() {
           <QRCode value={referralLink} size={140} fgColor="#32373c" />
         </div>
 
-        <button className="btn btn-accent" onClick={handleCopy}>
+        <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', marginBottom: 16, wordBreak: 'break-all', lineHeight: 1.5 }}>
+          {referralLink}
+        </p>
+
+        <button className="btn btn-accent" onClick={handleNativeShare}>
+          <Share2 size={16} /> Partager le lien
+        </button>
+
+        <button className="btn btn-secondary" style={{ marginTop: 8 }} onClick={handleCopy}>
           {copied ? <><Check size={16} /> Copié!</> : <><Copy size={16} /> Copier le lien</>}
         </button>
 
-        <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={() => handleShare('sms')}>
-            <MessageCircle size={15} /> SMS
-          </button>
-          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={() => handleShare('whatsapp')}>
-            <Send size={15} /> WhatsApp
-          </button>
-          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={() => handleShare('facebook')}>
-            <Share2 size={15} /> Facebook
-          </button>
+        <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+          <a href={`sms:?&body=${encodeURIComponent(shareText + ' ' + referralLink)}`}
+            className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}>
+            SMS
+          </a>
+          <a href={`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + referralLink)}`}
+            className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}
+            target="_blank" rel="noopener noreferrer">
+            WhatsApp
+          </a>
+          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`}
+            className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}
+            target="_blank" rel="noopener noreferrer">
+            Facebook
+          </a>
         </div>
       </div>
 
