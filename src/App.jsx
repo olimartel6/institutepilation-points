@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from './pages/LoginPage'
 import Dashboard from './pages/Dashboard'
@@ -13,12 +13,11 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [referralFrom, setReferralFrom] = useState(null)
 
-  // Check for referral code in URL
-  useState(() => {
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const ref = params.get('ref')
     if (ref) setReferralFrom(ref)
-  })
+  }, [])
 
   if (!isLoggedIn) {
     return (

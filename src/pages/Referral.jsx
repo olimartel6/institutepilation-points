@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import QRCode from 'react-qr-code'
 import { mockClient, mockReferrals } from '../data/mock'
 import { Copy, Check, Share2, UserPlus } from 'lucide-react'
@@ -6,71 +6,55 @@ import { Copy, Check, Share2, UserPlus } from 'lucide-react'
 export default function Referral() {
   const [copied, setCopied] = useState(false)
   const [toast, setToast] = useState(null)
-  const linkRef = useRef(null)
 
   const baseUrl = window.location.origin + window.location.pathname
-  const referralLink = `${baseUrl}?ref=${mockClient.referral_code}`
-  const shareText = `Rejoins le programme fidélité de l'Institut d'Épilation Laser et obtiens 75 points gratuits!`
+  const referralLink = baseUrl + '?ref=' + mockClient.referral_code
+  const shareText = 'Rejoins le programme fidelite et obtiens 75 points gratuits!'
 
-  const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 2500) }
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(referralLink)
-    } catch {
-      // Fallback: select text from hidden input
-      if (linkRef.current) {
-        linkRef.current.select()
-        document.execCommand('copy')
-      }
-    }
-    setCopied(true)
-    showToast('Lien copié!')
-    setTimeout(() => setCopied(false), 2500)
+  function showToast(msg) {
+    setToast(msg)
+    setTimeout(function() { setToast(null) }, 2500)
   }
 
-  const handleNativeShare = async () => {
+  function handleCopy() {
+    try {
+      navigator.clipboard.writeText(referralLink)
+      setCopied(true)
+      showToast('Lien copie!')
+      setTimeout(function() { setCopied(false) }, 2500)
+    } catch (e) {
+      // fallback
+      var input = document.createElement('input')
+      input.value = referralLink
+      document.body.appendChild(input)
+      input.select()
+      document.execCommand('copy')
+      document.body.removeChild(input)
+      setCopied(true)
+      showToast('Lien copie!')
+      setTimeout(function() { setCopied(false) }, 2500)
+    }
+  }
+
+  function handleNativeShare() {
     if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Programme Fidélité — Institut d\'Épilation Laser',
-          text: shareText,
-          url: referralLink,
-        })
-        showToast('Partagé avec succès!')
-      } catch (err) {
-        if (err.name !== 'AbortError') handleCopy()
-      }
+      navigator.share({
+        title: 'Programme Fidelite',
+        text: shareText,
+        url: referralLink,
+      }).catch(function() {})
     } else {
       handleCopy()
     }
   }
 
-  const handleShareSMS = () => {
-    const body = encodeURIComponent(`${shareText} ${referralLink}`)
-    window.location.href = `sms:?&body=${body}`
-  }
-
-  const handleShareWhatsApp = () => {
-    const text = encodeURIComponent(`${shareText} ${referralLink}`)
-    window.location.href = `https://wa.me/?text=${text}`
-  }
-
-  const handleShareFacebook = () => {
-    const url = encodeURIComponent(referralLink)
-    window.location.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`
-  }
+  var smsLink = 'sms:?&body=' + encodeURIComponent(shareText + ' ' + referralLink)
+  var whatsappLink = 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + referralLink)
+  var facebookLink = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(referralLink)
 
   return (
     <div className="page-content">
       {toast && <div className="toast">{toast}</div>}
-      <input
-        ref={linkRef}
-        value={referralLink}
-        readOnly
-        style={{ position: 'absolute', left: '-9999px' }}
-        aria-hidden="true"
-      />
 
       <div style={{ textAlign: 'center', padding: '20px 0 8px' }}>
         <div style={{
@@ -102,26 +86,23 @@ export default function Referral() {
           {referralLink}
         </p>
 
-        <button className="btn btn-accent" onClick={handleNativeShare}>
+        <button className="btn btn-accent" onClick={handleNativeShare} type="button">
           <Share2 size={16} /> Partager le lien
         </button>
 
-        <button className="btn btn-secondary" style={{ marginTop: 8 }} onClick={handleCopy}>
-          {copied ? <><Check size={16} /> Copié!</> : <><Copy size={16} /> Copier le lien</>}
+        <button className="btn btn-secondary" style={{ marginTop: 8 }} onClick={handleCopy} type="button">
+          {copied ? <><Check size={16} /> Copie!</> : <><Copy size={16} /> Copier le lien</>}
         </button>
 
         <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-          <a href={`sms:?&body=${encodeURIComponent(shareText + ' ' + referralLink)}`}
-            className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}>
+          <a href={smsLink} className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}>
             SMS
           </a>
-          <a href={`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + referralLink)}`}
-            className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}
+          <a href={whatsappLink} className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}
             target="_blank" rel="noopener noreferrer">
             WhatsApp
           </a>
-          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`}
-            className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}
+          <a href={facebookLink} className="btn btn-secondary btn-small" style={{ flex: 1, textDecoration: 'none' }}
             target="_blank" rel="noopener noreferrer">
             Facebook
           </a>
@@ -135,19 +116,21 @@ export default function Referral() {
             Aucun parrainage encore. Partagez votre lien!
           </p>
         ) : (
-          mockReferrals.map((ref, i) => (
-            <div key={i} className="client-row">
-              <div>
-                <div style={{ fontWeight: 600, fontSize: 15 }}>{ref.name}</div>
-                <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
-                  {new Date(ref.date).toLocaleDateString('fr-CA', { day: 'numeric', month: 'long' })}
+          mockReferrals.map(function(ref, i) {
+            return (
+              <div key={i} className="client-row">
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 15 }}>{ref.name}</div>
+                  <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
+                    {new Date(ref.date).toLocaleDateString('fr-CA', { day: 'numeric', month: 'long' })}
+                  </div>
                 </div>
+                <span className={'badge ' + (ref.status === 'completed' ? 'badge-success' : 'badge-pending')}>
+                  {ref.status === 'completed' ? '+75 pts' : 'En attente'}
+                </span>
               </div>
-              <span className={`badge ${ref.status === 'completed' ? 'badge-success' : 'badge-pending'}`}>
-                {ref.status === 'completed' ? '+75 pts' : 'En attente'}
-              </span>
-            </div>
-          ))
+            )
+          })
         )}
       </div>
     </div>
