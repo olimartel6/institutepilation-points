@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import { Home, Gift, Users } from 'lucide-react'
 
 const tabs = [
-  { path: '/', icon: '🏠', label: 'Accueil' },
-  { path: '/rewards', icon: '🎁', label: 'Récompenses' },
-  { path: '/referral', icon: '👥', label: 'Parrainage' },
+  { path: '/', icon: Home, label: 'Accueil' },
+  { path: '/rewards', icon: Gift, label: 'Récompenses' },
+  { path: '/referral', icon: Users, label: 'Parrainage' },
 ]
 
 export default function BottomNav() {
@@ -12,16 +13,20 @@ export default function BottomNav() {
 
   return (
     <nav className="bottom-nav">
-      {tabs.map(tab => (
-        <button
-          key={tab.path}
-          className={`nav-item ${location.pathname === tab.path ? 'active' : ''}`}
-          onClick={() => navigate(tab.path)}
-        >
-          <span className="nav-icon">{tab.icon}</span>
-          {tab.label}
-        </button>
-      ))}
+      {tabs.map(tab => {
+        const Icon = tab.icon
+        const active = location.pathname === tab.path
+        return (
+          <button
+            key={tab.path}
+            className={`nav-item ${active ? 'active' : ''}`}
+            onClick={() => navigate(tab.path)}
+          >
+            <Icon size={22} strokeWidth={active ? 2.2 : 1.8} />
+            {tab.label}
+          </button>
+        )
+      })}
     </nav>
   )
 }

@@ -11,12 +11,24 @@ import './index.css'
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [referralFrom, setReferralFrom] = useState(null)
+
+  // Check for referral code in URL
+  useState(() => {
+    const params = new URLSearchParams(window.location.search)
+    const ref = params.get('ref')
+    if (ref) setReferralFrom(ref)
+  })
 
   if (!isLoggedIn) {
     return (
       <HashRouter>
         <div className="app">
-          <LoginPage onLogin={() => setIsLoggedIn(true)} onAdminLogin={() => { setIsLoggedIn(true); setIsAdmin(true) }} />
+          <LoginPage
+            onLogin={() => setIsLoggedIn(true)}
+            onAdminLogin={() => { setIsLoggedIn(true); setIsAdmin(true) }}
+            referralFrom={referralFrom}
+          />
         </div>
       </HashRouter>
     )

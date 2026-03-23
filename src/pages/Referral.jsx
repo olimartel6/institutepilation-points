@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import QRCode from 'react-qr-code'
 import { mockClient, mockReferrals } from '../data/mock'
+import { Copy, Check, Share2, MessageCircle, Send } from 'lucide-react'
 
 export default function Referral() {
   const [copied, setCopied] = useState(false)
-  const referralLink = `https://institutepilation.com/mes-points?ref=${mockClient.referral_code}`
+  const baseUrl = window.location.origin + window.location.pathname
+  const referralLink = `${baseUrl}?ref=${mockClient.referral_code}`
 
   const handleCopy = () => {
     navigator.clipboard.writeText(referralLink).catch(() => {})
@@ -12,12 +14,31 @@ export default function Referral() {
     setTimeout(() => setCopied(false), 2000)
   }
 
+  const handleShare = (platform) => {
+    const text = `Rejoins le programme fidélité de l'Institut d'Épilation Laser et obtiens 75 points gratuits! ${referralLink}`
+    const encodedText = encodeURIComponent(text)
+
+    const urls = {
+      sms: `sms:?body=${encodedText}`,
+      whatsapp: `https://wa.me/?text=${encodedText}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}&quote=${encodeURIComponent('Rejoins le programme fidélité de l\'Institut d\'Épilation Laser!')}`,
+    }
+
+    window.open(urls[platform], '_blank')
+  }
+
   return (
     <div className="page-content">
       {copied && <div className="toast">Lien copié!</div>}
 
       <div style={{ textAlign: 'center', padding: '20px 0 8px' }}>
-        <div style={{ fontSize: 48, marginBottom: 12 }}>👥</div>
+        <div style={{
+          width: 64, height: 64, borderRadius: '50%', background: 'var(--bg-warm)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          margin: '0 auto 16px', color: 'var(--accent-dark)'
+        }}>
+          <Share2 size={28} />
+        </div>
         <h2 style={{ fontSize: 22, fontWeight: 700 }}>Parrainez, gagnez</h2>
         <p style={{ fontSize: 14, color: 'var(--text-light)', marginTop: 6, lineHeight: 1.5 }}>
           Invitez une amie et recevez chacune <strong style={{ color: 'var(--accent-dark)' }}>75 points</strong>
@@ -37,18 +58,18 @@ export default function Referral() {
         </div>
 
         <button className="btn btn-accent" onClick={handleCopy}>
-          Copier le lien de parrainage
+          {copied ? <><Check size={16} /> Copié!</> : <><Copy size={16} /> Copier le lien</>}
         </button>
 
         <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={handleCopy}>
-            SMS
+          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={() => handleShare('sms')}>
+            <MessageCircle size={15} /> SMS
           </button>
-          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={handleCopy}>
-            WhatsApp
+          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={() => handleShare('whatsapp')}>
+            <Send size={15} /> WhatsApp
           </button>
-          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={handleCopy}>
-            Facebook
+          <button className="btn btn-secondary btn-small" style={{ flex: 1 }} onClick={() => handleShare('facebook')}>
+            <Share2 size={15} /> Facebook
           </button>
         </div>
       </div>

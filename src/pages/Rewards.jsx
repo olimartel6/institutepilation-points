@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import { mockClient, mockRewards } from '../data/mock'
+import { Sparkles, DollarSign, Gem, Lock } from 'lucide-react'
 
-const rewardIcons = { discount_percent: '✨', discount_fixed: '💰', free_service: '💎' }
+const rewardIcons = {
+  discount_percent: <Sparkles size={22} />,
+  discount_fixed: <DollarSign size={22} />,
+  free_service: <Gem size={22} />
+}
 
 export default function Rewards() {
   const [toast, setToast] = useState(null)
@@ -28,7 +33,6 @@ export default function Rewards() {
       </div>
 
       <div className="gold-line" style={{ margin: '16px auto 28px' }} />
-
       <div className="section-title">Récompenses</div>
 
       {mockRewards.map(reward => {
@@ -40,8 +44,10 @@ export default function Rewards() {
           <div key={reward.id} className="reward-card">
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
               <div style={{
-                fontSize: 28, width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'var(--bg-warm)', borderRadius: 'var(--radius-sm)', flexShrink: 0
+                width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: canRedeem ? 'var(--accent)' : 'var(--bg-warm)',
+                color: canRedeem ? 'white' : 'var(--text-muted)',
+                borderRadius: 'var(--radius-sm)', flexShrink: 0
               }}>
                 {rewardIcons[reward.type]}
               </div>
@@ -61,7 +67,11 @@ export default function Rewards() {
               disabled={!canRedeem}
               onClick={() => handleRedeem(reward)}
             >
-              {canRedeem ? 'Échanger maintenant' : `Encore ${remaining} points`}
+              {canRedeem ? (
+                <>Échanger maintenant</>
+              ) : (
+                <><Lock size={14} /> Encore {remaining} points</>
+              )}
             </button>
           </div>
         )

@@ -1,7 +1,14 @@
 import { mockClient, mockTransactions, mockRewards } from '../data/mock'
+import { CreditCard, MapPin, Users, Gift, ChevronRight } from 'lucide-react'
 
 const typeLabels = { purchase: 'Achat', visit: 'Visite', referral: 'Parrainage', redemption: 'Échange' }
-const typeIcons = { purchase: '💳', visit: '📍', referral: '👥', redemption: '🎁' }
+const typeIcons = {
+  purchase: <CreditCard size={18} />,
+  visit: <MapPin size={18} />,
+  referral: <Users size={18} />,
+  redemption: <Gift size={18} />
+}
+const typeColors = { purchase: 'var(--success)', visit: 'var(--accent-dark)', referral: '#7C5CFC', redemption: 'var(--danger)' }
 
 export default function Dashboard() {
   const nextReward = mockRewards.find(r => r.points_required > mockClient.points_balance)
@@ -20,13 +27,20 @@ export default function Dashboard() {
       <div className="points-display">
         <div className="points-number">{mockClient.points_balance}</div>
         <div className="points-label">Points fidélité</div>
-        <div className="points-sub">Membre depuis {new Date(mockClient.created_at).toLocaleDateString('fr-CA', { month: 'long', year: 'numeric' })}</div>
+        <div className="points-sub">
+          Membre depuis {new Date(mockClient.created_at).toLocaleDateString('fr-CA', { month: 'long', year: 'numeric' })}
+        </div>
       </div>
 
       {nextReward && (
         <div className="next-reward">
-          <div className="next-reward-label">Prochaine récompense</div>
-          <div className="next-reward-name">{nextReward.name}</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div>
+              <div className="next-reward-label">Prochaine récompense</div>
+              <div className="next-reward-name">{nextReward.name}</div>
+            </div>
+            <ChevronRight size={20} color="var(--text-muted)" />
+          </div>
           <div className="reward-progress">
             <div className="reward-progress-bar" style={{ width: `${progress}%` }} />
           </div>
@@ -61,11 +75,19 @@ export default function Dashboard() {
       <div className="card">
         {mockTransactions.map(t => (
           <div key={t.id} className="transaction-item">
-            <div style={{ fontSize: 24, marginRight: 14 }}>{typeIcons[t.type]}</div>
+            <div style={{
+              width: 40, height: 40, borderRadius: 'var(--radius-sm)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: 'var(--bg-warm)', color: typeColors[t.type], marginRight: 14, flexShrink: 0
+            }}>
+              {typeIcons[t.type]}
+            </div>
             <div className="transaction-info">
               <div className={`transaction-type ${t.type}`}>{typeLabels[t.type]}</div>
               <div className="transaction-desc">{t.description}</div>
-              <div className="transaction-date">{new Date(t.created_at).toLocaleDateString('fr-CA', { day: 'numeric', month: 'long' })}</div>
+              <div className="transaction-date">
+                {new Date(t.created_at).toLocaleDateString('fr-CA', { day: 'numeric', month: 'long' })}
+              </div>
             </div>
             <div className={`transaction-points ${t.points >= 0 ? 'positive' : 'negative'}`}>
               {t.points >= 0 ? '+' : ''}{t.points}
