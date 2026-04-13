@@ -36,7 +36,10 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
     <div className="login-page">
       <div className="login-card">
         {config.logo ? (
-          <img src={config.logo} alt={config.businessName} className="login-logo" />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+            <img src={config.logo} alt={config.businessName} className="login-logo" />
+            <h2 style={{ fontSize: 24, fontWeight: 700, color: 'var(--primary)', letterSpacing: -0.5 }}>{config.businessName}</h2>
+          </div>
         ) : (
           <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--primary)', marginBottom: 8 }}>{config.businessName}</h2>
         )}
