@@ -48,7 +48,11 @@ export default function Dashboard({ client, business, setClient }) {
         )}
       </div>
 
-      <div className="points-display">
+      <div className="points-display" style={config.heroImage ? {
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)), url(${config.heroImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      } : {}}>
         <div className="points-number">{client?.points_balance || 0}</div>
         <div className="points-label">{config.pointsLabel}</div>
         <div className="points-sub">
@@ -94,6 +98,26 @@ export default function Dashboard({ client, business, setClient }) {
           <div className="stat-mini-label">Parrainages</div>
         </div>
       </div>
+
+      {config.galleryImages && config.galleryImages.length > 0 && (
+        <>
+          <div className="section-title">Nos spécialités</div>
+          <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 16, scrollSnapType: 'x mandatory' }}>
+            {config.galleryImages.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt=""
+                style={{
+                  width: 160, height: 160, borderRadius: 'var(--radius-sm)',
+                  objectFit: 'cover', flexShrink: 0, scrollSnapAlign: 'start',
+                  border: '1px solid var(--border)',
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
       <div className="section-title">Activité récente</div>
       <div className="card">
