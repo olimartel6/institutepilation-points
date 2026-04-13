@@ -1,34 +1,58 @@
-import { mockClient, mockTransactions, mockRewards } from '../data/mock'
+import { useState, useEffect } from 'react'
 import { CreditCard, MapPin, Users, Gift, ChevronRight } from 'lucide-react'
+import config from '../config'
+import { getClientTransactions, getClientById } from '../services/supabase'
 
-const typeLabels = { purchase: 'Achat', visit: 'Visite', referral: 'Parrainage', redemption: 'Échange' }
+const typeLabels = { purchase: 'Achat', visit: 'Visite', referral: 'Parrainage', redemption: 'Échange', manual: 'Manuel' }
 const typeIcons = {
   purchase: <CreditCard size={18} />,
   visit: <MapPin size={18} />,
   referral: <Users size={18} />,
-  redemption: <Gift size={18} />
+  redemption: <Gift size={18} />,
+  manual: <CreditCard size={18} />
 }
-const typeColors = { purchase: 'var(--success)', visit: 'var(--accent-dark)', referral: '#7C5CFC', redemption: 'var(--danger)' }
+const typeColors = { purchase: 'var(--success)', visit: 'var(--accent-dark)', referral: '#7C5CFC', redemption: 'var(--danger)', manual: 'var(--success)' }
 
-export default function Dashboard() {
-  const nextReward = mockRewards.find(r => r.points_required > mockClient.points_balance)
-  const progress = nextReward ? Math.min(100, (mockClient.points_balance / nextReward.points_required) * 100) : 100
+export default function Dashboard({ client, business, setClient }) {
+  const [transactions, setTransactions] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  const rewards = business?.rewards || config.rewards
+
+  useEffect(() => {
+    if (!client?.id) return
+    // Refresh client data + transactions
+    Promise.all([
+      getClientById(client.id),
+      getClientTransactions(client.id)
+    ]).then(([freshClient, txns]) => {
+      if (freshClient) setClient(freshClient)
+      setTransactions(txns)
+    }).finally(() => setLoading(false))
+  }, [client?.id])
+
+  const nextReward = rewards.find(r => r.points_required > (client?.points_balance || 0))
+  const progress = nextReward ? Math.min(100, ((client?.points_balance || 0) / nextReward.points_required) * 100) : 100
 
   return (
     <div className="page-content">
       <div className="welcome-header">
         <div>
           <div className="welcome-sub">Bonjour,</div>
-          <div className="welcome-name">{mockClient.name}</div>
+          <div className="welcome-name">{client?.name || 'Client'}</div>
         </div>
-        <img src="./logo-dark.png" alt="" className="welcome-logo" />
+        {config.logo ? (
+          <img src={config.logo} alt="" className="welcome-logo" />
+        ) : (
+          <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--accent-dark)' }}>{config.businessName}</span>
+        )}
       </div>
 
       <div className="points-display">
-        <div className="points-number">{mockClient.points_balance}</div>
-        <div className="points-label">Points fidélité</div>
+        <div className="points-number">{client?.points_balance || 0}</div>
+        <div className="points-label">{config.pointsLabel}</div>
         <div className="points-sub">
-          Membre depuis {new Date(mockClient.created_at).toLocaleDateString('fr-CA', { month: 'long', year: 'numeric' })}
+          Membre depuis {client?.created_at ? new Date(client.created_at).toLocaleDateString('fr-CA', { month: 'long', year: 'numeric' }) : '—'}
         </div>
       </div>
 
@@ -45,7 +69,7 @@ export default function Dashboard() {
             <div className="reward-progress-bar" style={{ width: `${progress}%` }} />
           </div>
           <div className="next-reward-count">
-            {mockClient.points_balance} / {nextReward.points_required} points — encore {nextReward.points_required - mockClient.points_balance} points
+            {client?.points_balance || 0} / {nextReward.points_required} points — encore {nextReward.points_required - (client?.points_balance || 0)} points
           </div>
         </div>
       )}
@@ -53,19 +77,19 @@ export default function Dashboard() {
       <div className="stat-grid">
         <div className="stat-mini">
           <div className="stat-mini-number" style={{ color: 'var(--success)' }}>
-            {mockTransactions.filter(t => t.type === 'purchase').length}
+            {transactions.filter(t => t.type === 'purchase').length}
           </div>
           <div className="stat-mini-label">Achats</div>
         </div>
         <div className="stat-mini">
           <div className="stat-mini-number" style={{ color: 'var(--accent-dark)' }}>
-            {mockTransactions.filter(t => t.type === 'visit').length}
+            {transactions.filter(t => t.type === 'visit').length}
           </div>
           <div className="stat-mini-label">Visites</div>
         </div>
         <div className="stat-mini">
           <div className="stat-mini-number" style={{ color: '#7C5CFC' }}>
-            {mockTransactions.filter(t => t.type === 'referral').length}
+            {transactions.filter(t => t.type === 'referral').length}
           </div>
           <div className="stat-mini-label">Parrainages</div>
         </div>
@@ -73,27 +97,33 @@ export default function Dashboard() {
 
       <div className="section-title">Activité récente</div>
       <div className="card">
-        {mockTransactions.map(t => (
-          <div key={t.id} className="transaction-item">
-            <div style={{
-              width: 40, height: 40, borderRadius: 'var(--radius-sm)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              background: 'var(--bg-warm)', color: typeColors[t.type], marginRight: 14, flexShrink: 0
-            }}>
-              {typeIcons[t.type]}
-            </div>
-            <div className="transaction-info">
-              <div className={`transaction-type ${t.type}`}>{typeLabels[t.type]}</div>
-              <div className="transaction-desc">{t.description}</div>
-              <div className="transaction-date">
-                {new Date(t.created_at).toLocaleDateString('fr-CA', { day: 'numeric', month: 'long' })}
+        {loading ? (
+          <p style={{ textAlign: 'center', color: 'var(--text-muted)', padding: 24 }}>Chargement...</p>
+        ) : transactions.length === 0 ? (
+          <p style={{ textAlign: 'center', color: 'var(--text-muted)', padding: 24 }}>Aucune activité encore</p>
+        ) : (
+          transactions.map(t => (
+            <div key={t.id} className="transaction-item">
+              <div style={{
+                width: 40, height: 40, borderRadius: 'var(--radius-sm)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'var(--bg-warm)', color: typeColors[t.type] || 'var(--text)', marginRight: 14, flexShrink: 0
+              }}>
+                {typeIcons[t.type] || <CreditCard size={18} />}
+              </div>
+              <div className="transaction-info">
+                <div className={`transaction-type ${t.type}`}>{typeLabels[t.type] || t.type}</div>
+                <div className="transaction-desc">{t.description}</div>
+                <div className="transaction-date">
+                  {new Date(t.created_at).toLocaleDateString('fr-CA', { day: 'numeric', month: 'long' })}
+                </div>
+              </div>
+              <div className={`transaction-points ${t.points >= 0 ? 'positive' : 'negative'}`}>
+                {t.points >= 0 ? '+' : ''}{t.points}
               </div>
             </div>
-            <div className={`transaction-points ${t.points >= 0 ? 'positive' : 'negative'}`}>
-              {t.points >= 0 ? '+' : ''}{t.points}
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { mockClient, mockRewards } from '../data/mock'
 import { Sparkles, DollarSign, Gem, Lock } from 'lucide-react'
+import config from '../config'
+import { createRedemption, getClientById } from '../services/supabase'
 
 const rewardIcons = {
   discount_percent: <Sparkles size={22} />,
@@ -8,13 +9,26 @@ const rewardIcons = {
   free_service: <Gem size={22} />
 }
 
-export default function Rewards() {
+export default function Rewards({ client, business, setClient }) {
   const [toast, setToast] = useState(null)
+  const [redeeming, setRedeeming] = useState(null)
 
-  const handleRedeem = (reward) => {
-    if (mockClient.points_balance >= reward.points_required) {
+  const rewards = business?.rewards || config.rewards
+
+  const handleRedeem = async (reward) => {
+    if (!client || client.points_balance < reward.points_required) return
+    setRedeeming(reward.id)
+    try {
+      await createRedemption(business.id, client.id, reward.name, reward.points_required)
+      const fresh = await getClientById(client.id)
+      if (fresh) setClient(fresh)
       setToast(`${reward.name} demandé avec succès!`)
       setTimeout(() => setToast(null), 3000)
+    } catch (e) {
+      setToast('Erreur: ' + (e.message || 'réessayez'))
+      setTimeout(() => setToast(null), 3000)
+    } finally {
+      setRedeeming(null)
     }
   }
 
@@ -27,7 +41,7 @@ export default function Rewards() {
           Votre solde
         </div>
         <div style={{ fontSize: 44, fontWeight: 800, color: 'var(--primary)', marginTop: 4 }}>
-          {mockClient.points_balance}
+          {client?.points_balance || 0}
         </div>
         <div style={{ fontSize: 13, color: 'var(--text-light)', marginTop: 2 }}>points disponibles</div>
       </div>
@@ -35,10 +49,10 @@ export default function Rewards() {
       <div className="gold-line" style={{ margin: '16px auto 28px' }} />
       <div className="section-title">Récompenses</div>
 
-      {mockRewards.map(reward => {
-        const canRedeem = mockClient.points_balance >= reward.points_required
-        const progress = Math.min(100, (mockClient.points_balance / reward.points_required) * 100)
-        const remaining = reward.points_required - mockClient.points_balance
+      {rewards.map(reward => {
+        const canRedeem = (client?.points_balance || 0) >= reward.points_required
+        const progress = Math.min(100, ((client?.points_balance || 0) / reward.points_required) * 100)
+        const remaining = reward.points_required - (client?.points_balance || 0)
 
         return (
           <div key={reward.id} className="reward-card">
@@ -49,7 +63,7 @@ export default function Rewards() {
                 color: canRedeem ? 'white' : 'var(--text-muted)',
                 borderRadius: 'var(--radius-sm)', flexShrink: 0
               }}>
-                {rewardIcons[reward.type]}
+                {rewardIcons[reward.type] || <Gem size={22} />}
               </div>
               <div style={{ flex: 1 }}>
                 <div className="reward-info">
@@ -64,10 +78,10 @@ export default function Rewards() {
             <button
               className={`btn ${canRedeem ? 'btn-accent' : 'btn-secondary'} btn-small`}
               style={{ marginTop: 16, width: '100%' }}
-              disabled={!canRedeem}
+              disabled={!canRedeem || redeeming === reward.id}
               onClick={() => handleRedeem(reward)}
             >
-              {canRedeem ? (
+              {redeeming === reward.id ? 'En cours...' : canRedeem ? (
                 <>Échanger maintenant</>
               ) : (
                 <><Lock size={14} /> Encore {remaining} points</>
