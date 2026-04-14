@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage'
 import Dashboard from './pages/Dashboard'
 import Rewards from './pages/Rewards'
 import Referral from './pages/Referral'
+import MyQR from './pages/MyQR'
 import Admin from './pages/Admin'
 import BottomNav from './components/BottomNav'
 import { config, applyTheme } from './config'
@@ -95,6 +96,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard client={client} business={business} setClient={setClient} />} />
           <Route path="/rewards" element={<Rewards client={client} business={business} setClient={setClient} />} />
+          <Route path="/myqr" element={<MyQR client={client} />} />
           <Route path="/referral" element={<Referral client={client} business={business} />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
