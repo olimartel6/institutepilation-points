@@ -49,10 +49,49 @@ export default function MyQR({ client }) {
 
       <p style={{
         textAlign: 'center', fontSize: 14, color: 'var(--text-light)',
-        fontWeight: 600, marginBottom: 24, lineHeight: 1.5,
+        fontWeight: 600, marginBottom: 16, lineHeight: 1.5,
       }}>
         Montrez ce code à la caisse pour<br />accumuler vos points
       </p>
+
+      <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 24 }}>
+        <button
+          className="btn btn-accent btn-small"
+          style={{ width: 'auto', padding: '10px 20px' }}
+          onClick={async () => {
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(user.id || 'demo-client')}`;
+            try {
+              const resp = await fetch(qrUrl);
+              const blob = await resp.blob();
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `qr-${config.businessName.replace(/\s/g, '-')}.png`;
+              a.click();
+              URL.revokeObjectURL(url);
+            } catch {
+              window.open(qrUrl, '_blank');
+            }
+          }}
+        >
+          📥 Sauvegarder le QR
+        </button>
+        <button
+          className="btn btn-secondary btn-small"
+          style={{ width: 'auto', padding: '10px 20px' }}
+          onClick={() => {
+            if (navigator.share) {
+              navigator.share({
+                title: `Mon QR - ${config.businessName}`,
+                text: `Mon QR code fidélité ${config.businessName}`,
+                url: window.location.href,
+              }).catch(() => {});
+            }
+          }}
+        >
+          📤 Partager
+        </button>
+      </div>
 
       <div style={{ textAlign: 'center', marginBottom: 20 }}>
         <div style={{ fontSize: 40, fontWeight: 800, color: 'var(--primary)' }}>{user.points_balance || 0}</div>
