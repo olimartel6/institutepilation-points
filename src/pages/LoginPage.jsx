@@ -5,6 +5,7 @@ import config from '../config'
 export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
   const [phone, setPhone] = useState('')
   const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [birthday, setBirthday] = useState('')
   const [code, setCode] = useState('')
   const [step, setStep] = useState('phone')
@@ -25,7 +26,7 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
     if (code.length === 4) {
       setLoading(true)
       try {
-        await onLogin(phone, name, birthday)
+        await onLogin(phone, name, birthday, email)
       } catch (err) {
         alert('Erreur: ' + (err.message || 'réessayez'))
       } finally {
@@ -64,6 +65,15 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
                 placeholder="Marie Tremblay"
                 value={name}
                 onChange={e => setName(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label>Courriel</label>
+              <input
+                type="email"
+                placeholder="marie@email.com"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
             </div>
             <div className="input-group">

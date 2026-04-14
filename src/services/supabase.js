@@ -38,13 +38,14 @@ export async function getClientById(clientId) {
   return data;
 }
 
-export async function createLoyaltyClient(businessId, phone, name, referralCode, referredBy, birthday) {
+export async function createLoyaltyClient(businessId, phone, name, referralCode, referredBy, birthday, email) {
   const { data, error } = await supabase
     .from('loyalty_clients')
     .insert({
       business_id: businessId,
       phone,
       name,
+      email: email || null,
       referral_code: referralCode,
       referred_by: referredBy || null,
       points_balance: 0,
@@ -253,9 +254,12 @@ export async function adminAddPoints(businessId, clientId, points, description, 
     await addTransaction(businessId, clientId, 'visit', bonusPoints, bonusDesc);
   }
 
-  // SMS: points earned
+  // Notifications: points earned
   if (client.phone && businessName) {
     sendSMS('points_earned', client.phone, businessName, { clientName: client.name, points: totalPoints, businessId, clientId });
+  }
+  if (client.email && businessName) {
+    sendEmail('points_earned', client.email, businessName, { clientName: client.name, points: totalPoints, businessId, clientId });
   }
 
   return { bonusPoints, bonusDesc, newVisitCount };
@@ -293,6 +297,27 @@ export async function sendSMS(type, to, businessName, opts = {}) {
       body: {
         type,
         to: formatPhone(to),
+        business_name: businessName,
+        client_name: opts.clientName,
+        points: opts.points,
+        reward_name: opts.rewardName,
+        custom_message: opts.customMessage,
+        business_id: opts.businessId,
+        client_id: opts.clientId,
+      },
+    });
+    return data?.sent || false;
+  } catch {
+    return false;
+  }
+}
+
+export async function sendEmail(type, to, businessName, opts = {}) {
+  try {
+    const { data } = await supabase.functions.invoke('send-email', {
+      body: {
+        type,
+        to,
         business_name: businessName,
         client_name: opts.clientName,
         points: opts.points,

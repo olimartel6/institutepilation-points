@@ -9,7 +9,7 @@ import Privacy from './pages/Privacy'
 import Admin from './pages/Admin'
 import BottomNav from './components/BottomNav'
 import { config, applyTheme } from './config'
-import { getBusiness, getClientByPhone, createLoyaltyClient, generateReferralCode, sendSMS } from './services/supabase'
+import { getBusiness, getClientByPhone, createLoyaltyClient, generateReferralCode, sendSMS, sendEmail } from './services/supabase'
 import './index.css'
 
 function App() {
@@ -37,14 +37,15 @@ function App() {
     if (ref) setReferralFrom(ref)
   }, [])
 
-  const handleLogin = async (phone, name, birthday) => {
+  const handleLogin = async (phone, name, birthday, email) => {
     if (!business) return
     let c = await getClientByPhone(business.id, phone)
     if (!c) {
       const code = generateReferralCode(name || 'CLIENT')
-      c = await createLoyaltyClient(business.id, phone, name || '', code, null, birthday)
-      // Welcome SMS
-      sendSMS('welcome', phone, business.name, { clientName: name, businessId: business.id, clientId: c.id })
+      c = await createLoyaltyClient(business.id, phone, name || '', code, null, birthday, email)
+      // Welcome notifications
+      if (email) sendEmail('welcome', email, business.name, { clientName: name, businessId: business.id, clientId: c.id })
+      if (phone) sendSMS('welcome', phone, business.name, { clientName: name, businessId: business.id, clientId: c.id })
     }
     setClient(c)
     setIsLoggedIn(true)
