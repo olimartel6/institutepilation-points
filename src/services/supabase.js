@@ -373,6 +373,101 @@ export async function sendEmail(type, to, businessName, opts = {}) {
   }
 }
 
+// ========== OFFERS ==========
+
+export async function getActiveOffers(businessId) {
+  const { data, error } = await supabase
+    .from('loyalty_offers')
+    .select('*')
+    .eq('business_id', businessId)
+    .eq('active', true)
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return data || [];
+}
+
+export async function createOffer(businessId, title, description, imageUrl, validUntil, maxClaims) {
+  const { data, error } = await supabase
+    .from('loyalty_offers')
+    .insert({
+      business_id: businessId,
+      title,
+      description,
+      image_url: imageUrl || null,
+      valid_until: validUntil || null,
+      max_claims: maxClaims || null,
+    })
+    .select()
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+export async function deleteOffer(offerId) {
+  const { error } = await supabase
+    .from('loyalty_offers')
+    .update({ active: false })
+    .eq('id', offerId);
+  if (error) throw error;
+}
+
+export async function claimOffer(offerId, clientId) {
+  // Check if already claimed
+  const { data: existing } = await supabase
+    .from('loyalty_offer_claims')
+    .select('id')
+    .eq('offer_id', offerId)
+    .eq('client_id', clientId)
+    .limit(1);
+  if (existing && existing.length > 0) throw new Error('Offre déjà réclamée');
+
+  const claimCode = 'OFR-' + Array.from({ length: 6 }, () => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random() * 31)]).join('');
+
+  const { data, error } = await supabase
+    .from('loyalty_offer_claims')
+    .insert({ offer_id: offerId, client_id: clientId, claim_code: claimCode })
+    .select()
+    .single();
+  if (error) throw error;
+
+  // Increment claims count
+  await supabase.rpc('increment_offer_claims', { offer_id_param: offerId }).catch(() => {
+    // Fallback if RPC doesn't exist
+    supabase.from('loyalty_offers').update({ claims_count: supabase.raw('claims_count + 1') }).eq('id', offerId);
+  });
+
+  return data;
+}
+
+export async function getClientClaims(clientId) {
+  const { data, error } = await supabase
+    .from('loyalty_offer_claims')
+    .select('*, loyalty_offers(title, description, image_url)')
+    .eq('client_id', clientId)
+    .eq('status', 'claimed')
+    .order('claimed_at', { ascending: false });
+  if (error) throw error;
+  return data || [];
+}
+
+export async function validateOfferClaim(claimCode) {
+  const { data } = await supabase
+    .from('loyalty_offer_claims')
+    .select('*, loyalty_offers(title, description, business_id), loyalty_clients(name)')
+    .eq('claim_code', claimCode)
+    .eq('status', 'claimed')
+    .single();
+  return data || null;
+}
+
+export async function confirmOfferClaim(claimId) {
+  const { error } = await supabase
+    .from('loyalty_offer_claims')
+    .update({ status: 'used', used_at: new Date().toISOString() })
+    .eq('id', claimId);
+  if (error) throw error;
+}
+
 // ========== REFERRALS ==========
 
 export async function getReferrals(clientId) {

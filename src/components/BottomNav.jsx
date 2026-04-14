@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Home, Gift, QrCode, Users } from 'lucide-react'
+import { Home, Gift, Tag, QrCode, Users } from 'lucide-react'
 
 const tabs = [
   { path: '/', icon: Home, label: 'Accueil' },
   { path: '/rewards', icon: Gift, label: 'Récompenses' },
+  { path: '/offers', icon: Tag, label: 'Offres' },
   { path: '/myqr', icon: QrCode, label: 'Mon QR' },
   { path: '/referral', icon: Users, label: 'Parrainage' },
 ]
