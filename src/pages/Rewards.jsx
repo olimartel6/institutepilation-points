@@ -146,14 +146,26 @@ export default function Rewards({ client, business, setClient }) {
         return (
           <div key={reward.id} className="reward-card">
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
-              <div style={{
-                width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: canRedeem ? 'var(--accent)' : 'var(--bg-warm)',
-                color: canRedeem ? 'white' : 'var(--text-muted)',
-                borderRadius: 'var(--radius-sm)', flexShrink: 0
-              }}>
-                {rewardIcons[reward.type] || <Gem size={22} />}
-              </div>
+              {reward.image ? (
+                <img
+                  src={reward.image}
+                  alt={reward.name}
+                  style={{
+                    width: 52, height: 52, borderRadius: 'var(--radius-sm)',
+                    objectFit: 'cover', flexShrink: 0,
+                    border: canRedeem ? '2px solid var(--accent)' : '1px solid var(--border)',
+                  }}
+                />
+              ) : (
+                <div style={{
+                  width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: canRedeem ? 'var(--accent)' : 'var(--bg-warm)',
+                  color: canRedeem ? 'white' : 'var(--text-muted)',
+                  borderRadius: 'var(--radius-sm)', flexShrink: 0
+                }}>
+                  {rewardIcons[reward.type] || <Gem size={22} />}
+                </div>
+              )}
               <div style={{ flex: 1 }}>
                 <div className="reward-info">
                   <h3>{reward.name}</h3>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { mockClient } from '../data/mock'
 import config from '../config'
 import { getTier } from '../utils/tiers'
@@ -5,6 +6,17 @@ import { getTier } from '../utils/tiers'
 export default function MyQR({ client }) {
   const user = client || mockClient
   const tier = getTier(user.total_points_earned || 0)
+
+  // Max brightness on this screen
+  useEffect(() => {
+    const originalBrightness = document.body.style.filter
+    document.body.style.filter = 'brightness(1.3)'
+    document.body.style.backgroundColor = '#FFFFFF'
+    return () => {
+      document.body.style.filter = originalBrightness || ''
+      document.body.style.backgroundColor = ''
+    }
+  }, [])
 
   return (
     <div className="page-content">
