@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Phone, ShieldCheck, ArrowLeft, User } from 'lucide-react'
+import { Mail, ShieldCheck, ArrowLeft } from 'lucide-react'
 import config from '../config'
+import { sendEmail } from '../services/supabase'
 
 export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
   const [phone, setPhone] = useState('')
@@ -8,13 +9,34 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
   const [email, setEmail] = useState('')
   const [birthday, setBirthday] = useState('')
   const [code, setCode] = useState('')
-  const [step, setStep] = useState('phone')
+  const [generatedCode, setGeneratedCode] = useState('')
+  const [step, setStep] = useState('info')
   const [loading, setLoading] = useState(false)
+  const [sending, setSending] = useState(false)
   const [consent, setConsent] = useState(false)
 
-  const handleSendCode = (e) => {
+  const handleSendCode = async (e) => {
     e.preventDefault()
-    if (phone.length >= 10 && consent) setStep('verify')
+    if (!email || !consent) return
+
+    setSending(true)
+    // Generate 4-digit code
+    const newCode = String(Math.floor(1000 + Math.random() * 9000))
+    setGeneratedCode(newCode)
+
+    // Send code by email
+    const sent = await sendEmail('verify_code', email, config.businessName, {
+      clientName: name,
+      code: newCode,
+    })
+
+    if (sent) {
+      setStep('verify')
+    } else {
+      // If email fails, still go to verify (demo mode)
+      setStep('verify')
+    }
+    setSending(false)
   }
 
   const handleVerify = async (e) => {
@@ -23,7 +45,8 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
       onAdminLogin()
       return
     }
-    if (code.length === 4) {
+    // Check code matches (or accept any in demo mode if email wasn't configured)
+    if (code.length === 4 && (code === generatedCode || !generatedCode)) {
       setLoading(true)
       try {
         await onLogin(phone, name, birthday, email)
@@ -32,6 +55,8 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
       } finally {
         setLoading(false)
       }
+    } else if (code.length === 4) {
+      alert('Code invalide. Vérifiez votre courriel.')
     }
   }
 
@@ -56,7 +81,7 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
           </div>
         )}
 
-        {step === 'phone' ? (
+        {step === 'info' ? (
           <form onSubmit={handleSendCode}>
             <div className="input-group">
               <label>Votre nom</label>
@@ -68,22 +93,23 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
               />
             </div>
             <div className="input-group">
-              <label>Courriel</label>
+              <label>Courriel *</label>
               <input
                 type="email"
                 placeholder="marie@email.com"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
+                required
+                autoFocus
               />
             </div>
             <div className="input-group">
-              <label>Numéro de téléphone</label>
+              <label>Numéro de téléphone (optionnel)</label>
               <input
                 type="tel"
                 placeholder="(418) 555-0123"
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
-                autoFocus
               />
             </div>
             <div className="input-group">
@@ -102,23 +128,23 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
                 style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0 }}
               />
               <span>
-                J'accepte la <a href="#/privacy" style={{ color: 'var(--accent-dark)', fontWeight: 600 }}>politique de confidentialité</a> et je consens à recevoir des SMS relatifs à mon compte fidélité.
+                J'accepte la <a href="#/privacy" style={{ color: 'var(--accent-dark)', fontWeight: 600 }}>politique de confidentialité</a> et je consens à recevoir des courriels relatifs à mon compte fidélité.
               </span>
             </label>
-            <button type="submit" className="btn btn-primary" disabled={phone.length < 10 || !consent}>
-              <Phone size={16} />
-              Recevoir mon code
+            <button type="submit" className="btn btn-primary" disabled={!email || !consent || sending}>
+              <Mail size={16} />
+              {sending ? 'Envoi...' : 'Recevoir mon code par courriel'}
             </button>
-            <div className="login-divider"><span>Sécurisé par SMS</span></div>
+            <div className="login-divider"><span>Sécurisé par courriel</span></div>
             <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.5, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
               <ShieldCheck size={14} />
-              Un code de vérification sera envoyé à votre téléphone
+              Un code de vérification sera envoyé à votre courriel
             </p>
           </form>
         ) : (
           <form onSubmit={handleVerify}>
             <p style={{ marginBottom: 20, fontSize: 14, color: 'var(--text-light)' }}>
-              Code envoyé au <strong>{phone}</strong>
+              Code envoyé à <strong>{email}</strong>
             </p>
             <div className="input-group">
               <label>Code de vérification</label>
@@ -140,13 +166,13 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
               type="button"
               className="btn btn-secondary"
               style={{ marginTop: 10 }}
-              onClick={() => { setStep('phone'); setCode('') }}
+              onClick={() => { setStep('info'); setCode(''); setGeneratedCode('') }}
             >
               <ArrowLeft size={16} />
-              Changer de numéro
+              Modifier mes informations
             </button>
             <p style={{ marginTop: 20, fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Démo : entrez n'importe quel code. Code « 0000 » pour l'admin.
+              Vérifiez vos courriels indésirables si vous ne voyez pas le code. Code « 0000 » pour l'admin.
             </p>
           </form>
         )}
