@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Sparkles, DollarSign, Gem, Lock, X } from 'lucide-react'
 import config from '../config'
 import { createRedemption, getClientById } from '../services/supabase'
@@ -16,14 +16,32 @@ export default function Rewards({ client, business, setClient }) {
 
   const rewards = business?.rewards || config.rewards
 
-  const handleRedeem = async (reward) => {
+  // Brightness boost when QR modal is showing
+  useEffect(() => {
+    if (redemptionQR) {
+      document.body.style.filter = 'brightness(1.3)'
+    } else {
+      document.body.style.filter = ''
+    }
+    return () => { document.body.style.filter = '' }
+  }, [redemptionQR])
+
+  const handleRedeem = (reward) => {
     if (!client || client.points_balance < reward.points_required) return
+    // Confirmation step to prevent accidental redemptions
+    const confirmed = window.confirm(
+      `Échanger "${reward.name}" pour ${reward.points_required} points?\n\nVos points seront déduits immédiatement. Cette action est irréversible.`
+    )
+    if (!confirmed) return
+    doRedeem(reward)
+  }
+
+  const doRedeem = async (reward) => {
     setRedeeming(reward.id)
     try {
       const redemption = await createRedemption(business.id, client.id, reward.name, reward.points_required)
       const fresh = await getClientById(client.id)
       if (fresh) setClient(fresh)
-      // Show the QR code modal
       setRedemptionQR({
         code: redemption.redemption_code,
         rewardName: reward.name,
