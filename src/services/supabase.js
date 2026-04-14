@@ -1,4 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
+import emailjs from '@emailjs/browser';
+
+// EmailJS config
+const EMAILJS_SERVICE = 'service_ki114yp';
+const EMAILJS_TEMPLATE = 'template_d1sass7';
+const EMAILJS_KEY = 'AmhgSuo-3agTp4Eii';
 
 const supabaseUrl = 'https://kptphghxhexirezukarr.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwdHBoZ2h4aGV4aXJlenVrYXJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MjA1NzMsImV4cCI6MjA4OTA5NjU3M30.TW9IZlmUQ1H4dJfWRAJ8fXgqR3YKjin8WJZGVPmOjFg';
@@ -312,23 +318,55 @@ export async function sendSMS(type, to, businessName, opts = {}) {
   }
 }
 
+function buildEmailContent(type, businessName, opts = {}) {
+  const name = opts.clientName?.split(' ')[0] || 'Client';
+  const biz = businessName;
+  const accent = '#C9A96E';
+
+  const wrap = (content) => `<div style="font-family:system-ui,-apple-system,sans-serif;max-width:480px;margin:0 auto;background:#FAFAF8;border-radius:16px;overflow:hidden"><div style="background:linear-gradient(135deg,#32373c,#1a1d21);padding:32px 24px;text-align:center"><h1 style="color:white;font-size:22px;margin:0">${biz}</h1><p style="color:${accent};font-size:13px;margin:8px 0 0;text-transform:uppercase;letter-spacing:2px">Programme Fidélité</p></div><div style="padding:32px 24px">${content}</div><div style="padding:16px 24px;text-align:center;font-size:11px;color:#9CA3AF;border-top:1px solid #E8E6E1">Envoyé par LogicSupplies</div></div>`;
+
+  switch (type) {
+    case 'verify_code':
+      return {
+        subject: `${opts.code} — Votre code de vérification`,
+        html: wrap(`<h2 style="font-size:20px;color:#212529;margin:0 0 12px;text-align:center">Code de vérification</h2><p style="color:#6c757d;line-height:1.6;margin:0 0 24px;text-align:center">Entrez ce code dans l'application pour vous connecter :</p><div style="background:#32373c;border-radius:16px;padding:28px;text-align:center;margin:0 0 24px"><div style="font-size:48px;font-weight:800;color:white;letter-spacing:16px;font-family:monospace">${opts.code}</div></div><p style="color:#9CA3AF;font-size:12px;text-align:center">Ce code expire dans 10 minutes.</p>`),
+      };
+    case 'welcome':
+      return {
+        subject: `Bienvenue chez ${biz}!`,
+        html: wrap(`<h2 style="font-size:20px;color:#212529;margin:0 0 12px">Bienvenue, ${name}!</h2><p style="color:#6c757d;line-height:1.6;margin:0 0 24px">Votre compte fidélité est maintenant actif. Accumulez des points à chaque visite!</p><div style="background:white;border-radius:12px;padding:20px;text-align:center;border:1px solid #E8E6E1"><div style="font-size:48px;font-weight:800;color:#32373c">0</div><div style="font-size:12px;color:#9CA3AF;text-transform:uppercase;letter-spacing:2px;margin-top:4px">Points</div></div>`),
+      };
+    case 'points_earned':
+      return {
+        subject: `+${opts.points} points chez ${biz}!`,
+        html: wrap(`<h2 style="font-size:20px;color:#212529;margin:0 0 12px">Bravo, ${name}!</h2><div style="background:linear-gradient(135deg,${accent},#B08D4F);border-radius:12px;padding:24px;text-align:center;margin:0 0 16px"><div style="font-size:42px;font-weight:800;color:white">+${opts.points}</div><div style="font-size:13px;color:rgba(255,255,255,0.8);margin-top:4px">points gagnés</div></div><p style="color:#6c757d;line-height:1.6;margin:0">Continuez à accumuler pour débloquer des récompenses!</p>`),
+      };
+    case 'birthday':
+      return {
+        subject: `Joyeux anniversaire, ${name}!`,
+        html: wrap(`<div style="text-align:center;margin-bottom:16px;font-size:64px">🎂</div><h2 style="font-size:22px;color:#212529;margin:0 0 12px;text-align:center">Joyeux anniversaire!</h2><div style="background:linear-gradient(135deg,#FFD700,#FFA500);border-radius:12px;padding:24px;text-align:center;margin:0 0 16px"><div style="font-size:42px;font-weight:800;color:#1a1a2e">+100</div><div style="font-size:13px;color:rgba(0,0,0,0.6);margin-top:4px">points bonus cadeau</div></div>`),
+      };
+    case 'win_back':
+      return {
+        subject: `${name}, on s'ennuie de vous!`,
+        html: wrap(`<h2 style="font-size:20px;color:#212529;margin:0 0 12px">Ça fait un moment, ${name}!</h2><p style="color:#6c757d;line-height:1.6;margin:0 0 20px">${biz} vous offre des points bonus à votre prochaine visite!</p><div style="background:${accent};color:white;border-radius:12px;padding:16px;text-align:center;font-weight:700;font-size:16px">Points bonus à votre prochaine visite!</div>`),
+      };
+    default:
+      return { subject: `Message de ${biz}`, html: wrap(`<p>${opts.customMessage || ''}</p>`) };
+  }
+}
+
 export async function sendEmail(type, to, businessName, opts = {}) {
   try {
-    const { data } = await supabase.functions.invoke('send-email', {
-      body: {
-        type,
-        to,
-        business_name: businessName,
-        client_name: opts.clientName,
-        points: opts.points,
-        reward_name: opts.rewardName,
-        custom_message: opts.customMessage,
-        business_id: opts.businessId,
-        client_id: opts.clientId,
-      },
-    });
-    return data?.sent || false;
-  } catch {
+    const { subject, html } = buildEmailContent(type, businessName, opts);
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      to_email: to,
+      subject: subject,
+      html_content: html,
+    }, EMAILJS_KEY);
+    return true;
+  } catch (e) {
+    console.error('EmailJS error:', e);
     return false;
   }
 }
