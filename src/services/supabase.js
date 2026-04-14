@@ -274,12 +274,25 @@ export async function verifyBalance(clientId) {
 
 // ========== SMS ==========
 
+function formatPhone(phone) {
+  if (!phone) return '';
+  // Remove all non-digits
+  const digits = phone.replace(/\D/g, '');
+  // If starts with 1 and 11 digits = already has country code
+  if (digits.length === 11 && digits.startsWith('1')) return '+' + digits;
+  // If 10 digits = add +1
+  if (digits.length === 10) return '+1' + digits;
+  // If already has +, return as-is
+  if (phone.startsWith('+')) return phone;
+  return '+1' + digits;
+}
+
 export async function sendSMS(type, to, businessName, opts = {}) {
   try {
     const { data, error } = await supabase.functions.invoke('send-sms', {
       body: {
         type,
-        to,
+        to: formatPhone(to),
         business_name: businessName,
         client_name: opts.clientName,
         points: opts.points,
