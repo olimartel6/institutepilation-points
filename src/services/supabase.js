@@ -373,6 +373,19 @@ export async function sendEmail(type, to, businessName, opts = {}) {
   }
 }
 
+// ========== WALLET PASS ==========
+
+export async function generateWalletPass(clientId, clientName, businessName, points, tier, color) {
+  try {
+    const { data } = await supabase.functions.invoke('generate-wallet-pass', {
+      body: { client_id: clientId, client_name: clientName, business_name: businessName, points, tier, color },
+    });
+    return data?.url || null;
+  } catch {
+    return null;
+  }
+}
+
 // ========== OFFERS ==========
 
 export async function getActiveOffers(businessId) {

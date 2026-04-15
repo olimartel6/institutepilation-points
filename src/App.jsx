@@ -10,7 +10,7 @@ import Privacy from './pages/Privacy'
 import Admin from './pages/Admin'
 import BottomNav from './components/BottomNav'
 import { config, applyTheme } from './config'
-import { getBusiness, getClientByPhone, createLoyaltyClient, generateReferralCode, sendSMS, sendEmail } from './services/supabase'
+import { getBusiness, getClientByPhone, createLoyaltyClient, generateReferralCode, sendSMS, sendEmail, generateWalletPass } from './services/supabase'
 import './index.css'
 
 function App() {
@@ -47,6 +47,8 @@ function App() {
       // Welcome notifications
       if (email) sendEmail('welcome', email, business.name, { clientName: name, businessId: business.id, clientId: c.id })
       if (phone) sendSMS('welcome', phone, business.name, { clientName: name, businessId: business.id, clientId: c.id })
+      // Generate Apple Wallet pass
+      generateWalletPass(c.id, name || 'Client', business.name, 0, 'Bronze')
     }
     setClient(c)
     setIsLoggedIn(true)
