@@ -44,10 +44,7 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
 
   const handleVerify = async (e) => {
     e.preventDefault()
-    if (code === '0000') {
-      onAdminLogin()
-      return
-    }
+    // Admin login removed — admin uses Loggic Business app
     // Check code matches (or accept any in demo mode if email wasn't configured)
     if (code.length === 4 && (code === generatedCode || !generatedCode)) {
       setLoading(true)
@@ -175,7 +172,7 @@ export default function LoginPage({ onLogin, onAdminLogin, referralFrom }) {
               Modifier mes informations
             </button>
             <p style={{ marginTop: 20, fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Vérifiez vos courriels indésirables si vous ne voyez pas le code. Code « 0000 » pour l'admin.
+              Vérifiez vos courriels indésirables si vous ne voyez pas le code.
             </p>
           </form>
         )}
