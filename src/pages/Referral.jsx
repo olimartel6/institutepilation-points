@@ -56,15 +56,16 @@ export default function Referral({ client, business }) {
 
       <div style={{ textAlign: 'center', padding: '20px 0 8px' }}>
         <div style={{
-          width: 64, height: 64, borderRadius: '50%', background: 'var(--bg-warm)',
+          width: 64, height: 64, borderRadius: '50%',
+          background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.2)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          margin: '0 auto 16px', color: 'var(--accent-dark)'
+          margin: '0 auto 16px', color: 'var(--accent)'
         }}>
           <UserPlus size={28} />
         </div>
-        <h2 style={{ fontSize: 22, fontWeight: 700 }}>Parrainez, gagnez</h2>
+        <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)' }}>Parrainez, gagnez</h2>
         <p style={{ fontSize: 14, color: 'var(--text-light)', marginTop: 6, lineHeight: 1.5 }}>
-          Invitez une amie et recevez chacune <strong style={{ color: 'var(--accent-dark)' }}>{config.referralBonus} points</strong>
+          Invitez une amie et recevez chacune <strong style={{ color: 'var(--accent)' }}>{config.referralBonus} points</strong>
         </p>
       </div>
 
@@ -77,13 +78,19 @@ export default function Referral({ client, business }) {
         </div>
 
         <div style={{ textAlign: 'center', padding: '20px 0' }}>
-          <img
-            src={'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + encodeURIComponent(referralLink)}
-            alt="QR Code"
-            width={160}
-            height={160}
-            style={{ borderRadius: 8 }}
-          />
+          <div style={{
+            display: 'inline-block', padding: 14, background: 'white', borderRadius: 12,
+            border: '2px solid rgba(201,169,110,0.4)',
+            boxShadow: '0 0 25px rgba(201,169,110,0.15)',
+          }}>
+            <img
+              src={'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + encodeURIComponent(referralLink)}
+              alt="QR Code"
+              width={160}
+              height={160}
+              style={{ borderRadius: 6 }}
+            />
+          </div>
         </div>
 
         <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', marginBottom: 16, wordBreak: 'break-all', lineHeight: 1.5 }}>

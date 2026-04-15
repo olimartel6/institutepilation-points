@@ -23,6 +23,7 @@ export default function BottomNav() {
             key={tab.path}
             className={`nav-item ${active ? 'active' : ''}`}
             onClick={() => navigate(tab.path)}
+            style={active ? { color: '#C9A96E' } : {}}
           >
             <Icon size={22} strokeWidth={active ? 2.2 : 1.8} />
             {tab.label}

@@ -86,17 +86,17 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
         {config.logo ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
             <img src={config.logo} alt={config.businessName} className="login-logo" />
-            <h2 style={{ fontSize: 24, fontWeight: 700, color: 'var(--primary)', letterSpacing: -0.5 }}>{config.businessName}</h2>
+            <h2 style={{ fontSize: 24, fontWeight: 700, color: 'var(--text)', letterSpacing: -0.5 }}>{config.businessName}</h2>
           </div>
         ) : (
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--primary)', marginBottom: 8 }}>{config.businessName}</h2>
+          <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text)', marginBottom: 8 }}>{config.businessName}</h2>
         )}
         <div className="gold-line" style={{ margin: '0 auto 24px' }} />
         <h1>Programme Fidélité</h1>
         <p>{config.tagline}</p>
 
         {referralFrom && mode === 'signup' && (
-          <div style={{ background: 'var(--bg-warm)', borderRadius: 'var(--radius-sm)', padding: '12px 16px', marginBottom: 24, fontSize: 13, color: 'var(--accent-dark)', fontWeight: 600 }}>
+          <div style={{ background: 'rgba(201,169,110,0.08)', border: '1px solid rgba(201,169,110,0.15)', borderRadius: 'var(--radius-sm)', padding: '12px 16px', marginBottom: 24, fontSize: 13, color: 'var(--accent)', fontWeight: 600 }}>
             Vous avez été parrainé(e) — inscrivez-vous pour recevoir {config.referralBonus} points!
           </div>
         )}
@@ -192,15 +192,15 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
                 onChange={e => setBirthday(e.target.value)}
               />
             </div>
-            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 16, cursor: 'pointer', fontSize: 12, color: 'var(--text-light)', lineHeight: 1.5 }}>
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 16, cursor: 'pointer', fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.5 }}>
               <input
                 type="checkbox"
                 checked={consent}
                 onChange={e => setConsent(e.target.checked)}
-                style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0 }}
+                style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: '#C9A96E' }}
               />
               <span>
-                J'accepte la <a href="#/privacy" style={{ color: 'var(--accent-dark)', fontWeight: 600 }}>politique de confidentialité</a> et je consens à recevoir des courriels relatifs à mon compte fidélité.
+                J'accepte la <a href="#/privacy" style={{ color: 'var(--accent)', fontWeight: 600 }}>politique de confidentialité</a> et je consens à recevoir des courriels relatifs à mon compte fidélité.
               </span>
             </label>
             <button type="submit" className="btn btn-primary" disabled={!email || !password || !consent || sending}>

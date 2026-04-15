@@ -16,14 +16,9 @@ export default function Rewards({ client, business, setClient }) {
 
   const rewards = business?.rewards || config.rewards
 
-  // Brightness boost when QR modal is showing
+  // Keep dark theme in modal
   useEffect(() => {
-    if (redemptionQR) {
-      document.body.style.filter = 'brightness(1.3)'
-    } else {
-      document.body.style.filter = ''
-    }
-    return () => { document.body.style.filter = '' }
+    return () => {}
   }, [redemptionQR])
 
   const handleRedeem = (reward) => {
@@ -83,24 +78,27 @@ export default function Rewards({ client, business, setClient }) {
           padding: 20,
         }}>
           <div style={{
-            background: 'white', borderRadius: 20, padding: 32,
+            background: 'rgba(20,20,25,0.95)', backdropFilter: 'blur(40px)', WebkitBackdropFilter: 'blur(40px)',
+            borderRadius: 20, padding: 32,
             maxWidth: 360, width: '100%', textAlign: 'center',
-            position: 'relative',
+            position: 'relative', border: '1px solid rgba(201,169,110,0.2)',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
           }}>
             <button
               onClick={() => setRedemptionQR(null)}
               style={{
                 position: 'absolute', top: 12, right: 12,
                 width: 32, height: 32, borderRadius: '50%',
-                border: 'none', background: 'var(--bg-warm)',
+                border: '1px solid rgba(201,169,110,0.15)', background: 'rgba(255,255,255,0.05)',
                 cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: 'var(--text-light)',
               }}
             >
               <X size={16} />
             </button>
 
             <div style={{ fontSize: 48, marginBottom: 12 }}>🎉</div>
-            <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4 }}>Récompense prête!</h2>
+            <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4, color: 'var(--text)' }}>Récompense prête!</h2>
             <p style={{ fontSize: 14, color: 'var(--text-light)', marginBottom: 20 }}>
               {redemptionQR.rewardName}
             </p>
@@ -108,7 +106,8 @@ export default function Rewards({ client, business, setClient }) {
             <div style={{
               display: 'inline-block', padding: 16,
               background: 'white', borderRadius: 16,
-              border: '2px solid var(--accent)',
+              border: '2px solid rgba(201,169,110,0.5)',
+              boxShadow: '0 0 30px rgba(201,169,110,0.2)',
               marginBottom: 16,
             }}>
               <img
@@ -121,9 +120,10 @@ export default function Rewards({ client, business, setClient }) {
             </div>
 
             <div style={{
-              background: 'var(--bg-warm)', borderRadius: 10, padding: '10px 16px',
+              background: 'rgba(201,169,110,0.1)', borderRadius: 10, padding: '10px 16px',
               marginBottom: 12, fontSize: 22, fontWeight: 800, letterSpacing: 4,
-              color: 'var(--accent-dark)',
+              color: 'var(--accent)',
+              border: '1px solid rgba(201,169,110,0.15)',
             }}>
               {redemptionQR.code}
             </div>
@@ -147,7 +147,15 @@ export default function Rewards({ client, business, setClient }) {
         <div style={{ fontSize: 13, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 600 }}>
           Votre solde
         </div>
-        <div style={{ fontSize: 44, fontWeight: 800, color: 'var(--primary)', marginTop: 4 }}>
+        <div style={{
+          fontSize: 48, fontWeight: 800, marginTop: 4,
+          background: 'linear-gradient(135deg, #C9A96E, #e8d5a8, #C9A96E)',
+          backgroundSize: '200% auto',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          animation: 'shimmer 3s linear infinite',
+        }}>
           {client?.points_balance || 0}
         </div>
         <div style={{ fontSize: 13, color: 'var(--text-light)', marginTop: 2 }}>points disponibles</div>
@@ -177,9 +185,10 @@ export default function Rewards({ client, business, setClient }) {
               ) : (
                 <div style={{
                   width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: canRedeem ? 'var(--accent)' : 'var(--bg-warm)',
-                  color: canRedeem ? 'white' : 'var(--text-muted)',
-                  borderRadius: 'var(--radius-sm)', flexShrink: 0
+                  background: canRedeem ? 'linear-gradient(135deg, #C9A96E, #B08D4F)' : 'rgba(255,255,255,0.04)',
+                  color: canRedeem ? '#0a0a0a' : 'var(--text-muted)',
+                  borderRadius: 'var(--radius-sm)', flexShrink: 0,
+                  border: canRedeem ? 'none' : '1px solid rgba(201,169,110,0.1)',
                 }}>
                   {rewardIcons[reward.type] || <Gem size={22} />}
                 </div>

@@ -37,14 +37,9 @@ export default function Offers({ client, business }) {
     }
   }
 
-  // Brightness boost on QR modal
+  // Keep dark theme in modal
   useEffect(() => {
-    if (claimQR) {
-      document.body.style.filter = 'brightness(1.3)'
-    } else {
-      document.body.style.filter = ''
-    }
-    return () => { document.body.style.filter = '' }
+    return () => {}
   }, [claimQR])
 
   if (loading) {
@@ -62,22 +57,28 @@ export default function Offers({ client, business }) {
           zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
         }}>
           <div style={{
-            background: 'white', borderRadius: 20, padding: 32,
+            background: 'rgba(20,20,25,0.95)', backdropFilter: 'blur(40px)', WebkitBackdropFilter: 'blur(40px)',
+            borderRadius: 20, padding: 32,
             maxWidth: 360, width: '100%', textAlign: 'center', position: 'relative',
+            border: '1px solid rgba(201,169,110,0.2)',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
           }}>
             <button onClick={() => setClaimQR(null)} style={{
               position: 'absolute', top: 12, right: 12, width: 32, height: 32, borderRadius: '50%',
-              border: 'none', background: 'var(--bg-warm)', cursor: 'pointer',
+              border: '1px solid rgba(201,169,110,0.15)', background: 'rgba(255,255,255,0.05)', cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: 'var(--text-light)',
             }}><X size={16} /></button>
 
             <div style={{ fontSize: 48, marginBottom: 12 }}>🎫</div>
-            <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4 }}>Offre réclamée!</h2>
+            <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4, color: 'var(--text)' }}>Offre réclamée!</h2>
             <p style={{ fontSize: 14, color: 'var(--text-light)', marginBottom: 20 }}>{claimQR.title}</p>
 
             <div style={{
               display: 'inline-block', padding: 16, background: 'white',
-              borderRadius: 16, border: '2px solid var(--accent)', marginBottom: 16,
+              borderRadius: 16, border: '2px solid rgba(201,169,110,0.5)',
+              boxShadow: '0 0 30px rgba(201,169,110,0.2)',
+              marginBottom: 16,
             }}>
               <img
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(claimQR.code)}`}
@@ -86,8 +87,9 @@ export default function Offers({ client, business }) {
             </div>
 
             <div style={{
-              background: 'var(--bg-warm)', borderRadius: 10, padding: '10px 16px',
-              marginBottom: 12, fontSize: 22, fontWeight: 800, letterSpacing: 4, color: 'var(--accent-dark)',
+              background: 'rgba(201,169,110,0.1)', borderRadius: 10, padding: '10px 16px',
+              marginBottom: 12, fontSize: 22, fontWeight: 800, letterSpacing: 4, color: 'var(--accent)',
+              border: '1px solid rgba(201,169,110,0.15)',
             }}>
               {claimQR.code}
             </div>
@@ -101,7 +103,7 @@ export default function Offers({ client, business }) {
 
       <div style={{ textAlign: 'center', padding: '20px 0 8px' }}>
         <Tag size={32} color="var(--accent)" />
-        <h2 style={{ fontSize: 22, fontWeight: 700, marginTop: 8 }}>Offres spéciales</h2>
+        <h2 style={{ fontSize: 22, fontWeight: 700, marginTop: 8, color: 'var(--text)' }}>Offres spéciales</h2>
         <p style={{ fontSize: 14, color: 'var(--text-light)', marginTop: 4 }}>
           Offres exclusives de {config.businessName}
         </p>

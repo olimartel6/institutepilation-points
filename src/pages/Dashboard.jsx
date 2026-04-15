@@ -45,7 +45,7 @@ export default function Dashboard({ client, business, setClient }) {
         {config.logo ? (
           <img src={config.logo} alt="" className="welcome-logo" />
         ) : (
-          <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--accent-dark)' }}>{config.businessName}</span>
+          <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--accent)' }}>{config.businessName}</span>
         )}
       </div>
 
@@ -56,21 +56,23 @@ export default function Dashboard({ client, business, setClient }) {
         return (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '12px 16px', marginBottom: 16,
-            background: tier.color + '15', borderRadius: 'var(--radius-sm)',
-            border: `1px solid ${tier.color}30`,
+            padding: '14px 18px', marginBottom: 16,
+            background: 'rgba(201,169,110,0.06)', borderRadius: 'var(--radius-sm)',
+            border: '1px solid rgba(201,169,110,0.15)',
+            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+            animation: 'fadeInUp 0.5s ease both',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ fontSize: 24 }}>{tier.icon}</span>
               <div>
-                <div style={{ fontWeight: 700, fontSize: 15, color: tier.color }}>{tier.name}</div>
+                <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--accent)' }}>{tier.name}</div>
                 <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>x{tier.multiplier} points</div>
               </div>
             </div>
             {next && (
               <div style={{ fontSize: 11, color: 'var(--text-light)', textAlign: 'right' }}>
                 <div>Prochain: {next.name}</div>
-                <div style={{ fontWeight: 600 }}>{next.min_points - (client?.total_points_earned || 0)} pts restants</div>
+                <div style={{ fontWeight: 600, color: 'var(--accent-light)' }}>{next.min_points - (client?.total_points_earned || 0)} pts restants</div>
               </div>
             )}
           </div>
@@ -80,12 +82,14 @@ export default function Dashboard({ client, business, setClient }) {
       {isBirthdayToday(client?.birthday) && (
         <div style={{
           padding: '16px', marginBottom: 16, borderRadius: 'var(--radius-sm)',
-          background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-          textAlign: 'center', color: '#1a1a2e',
+          background: 'linear-gradient(135deg, rgba(201,169,110,0.2) 0%, rgba(176,141,79,0.15) 100%)',
+          border: '1px solid rgba(201,169,110,0.25)',
+          textAlign: 'center', color: 'var(--text)',
+          animation: 'fadeInUp 0.5s ease both',
         }}>
           <div style={{ fontSize: 28 }}>🎂</div>
-          <div style={{ fontWeight: 700, fontSize: 16, marginTop: 4 }}>Joyeux anniversaire!</div>
-          <div style={{ fontSize: 13, marginTop: 4 }}>100 points bonus ont été ajoutés à votre compte</div>
+          <div style={{ fontWeight: 700, fontSize: 16, marginTop: 4, color: 'var(--accent)' }}>Joyeux anniversaire!</div>
+          <div style={{ fontSize: 13, marginTop: 4, color: 'var(--text-light)' }}>100 points bonus ont été ajoutés à votre compte</div>
         </div>
       )}
 
@@ -121,19 +125,19 @@ export default function Dashboard({ client, business, setClient }) {
 
       <div className="stat-grid">
         <div className="stat-mini">
-          <div className="stat-mini-number" style={{ color: 'var(--success)' }}>
+          <div className="stat-mini-number" style={{ color: 'var(--accent)' }}>
             {transactions.filter(t => t.type === 'purchase').length}
           </div>
           <div className="stat-mini-label">Achats</div>
         </div>
         <div className="stat-mini">
-          <div className="stat-mini-number" style={{ color: 'var(--accent-dark)' }}>
+          <div className="stat-mini-number" style={{ color: 'var(--accent-light)' }}>
             {transactions.filter(t => t.type === 'visit').length}
           </div>
           <div className="stat-mini-label">Visites</div>
         </div>
         <div className="stat-mini">
-          <div className="stat-mini-number" style={{ color: '#7C5CFC' }}>
+          <div className="stat-mini-number" style={{ color: '#a78bfa' }}>
             {transactions.filter(t => t.type === 'referral').length}
           </div>
           <div className="stat-mini-label">Parrainages</div>
@@ -172,7 +176,8 @@ export default function Dashboard({ client, business, setClient }) {
               <div style={{
                 width: 40, height: 40, borderRadius: 'var(--radius-sm)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'var(--bg-warm)', color: typeColors[t.type] || 'var(--text)', marginRight: 14, flexShrink: 0
+                background: 'rgba(201,169,110,0.08)', border: '1px solid rgba(201,169,110,0.12)',
+                color: typeColors[t.type] || 'var(--accent)', marginRight: 14, flexShrink: 0
               }}>
                 {typeIcons[t.type] || <CreditCard size={18} />}
               </div>
