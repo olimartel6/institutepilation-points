@@ -37,7 +37,6 @@ export default function Offers({ client, business }) {
     }
   }
 
-  // Keep dark theme in modal
   useEffect(() => {
     return () => {}
   }, [claimQR])
@@ -53,19 +52,19 @@ export default function Offers({ client, business }) {
       {/* Claim QR Modal */}
       {claimQR && (
         <div style={{
-          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)',
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
           zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
+          backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
         }}>
           <div style={{
-            background: 'rgba(20,20,25,0.95)', backdropFilter: 'blur(40px)', WebkitBackdropFilter: 'blur(40px)',
-            borderRadius: 20, padding: 32,
+            background: '#FFFFFF',
+            borderRadius: 24, padding: 36,
             maxWidth: 360, width: '100%', textAlign: 'center', position: 'relative',
-            border: '1px solid rgba(201,169,110,0.2)',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.15)',
           }}>
             <button onClick={() => setClaimQR(null)} style={{
-              position: 'absolute', top: 12, right: 12, width: 32, height: 32, borderRadius: '50%',
-              border: '1px solid rgba(201,169,110,0.15)', background: 'rgba(255,255,255,0.05)', cursor: 'pointer',
+              position: 'absolute', top: 14, right: 14, width: 32, height: 32, borderRadius: '50%',
+              border: '1px solid rgba(0,0,0,0.08)', background: 'rgba(0,0,0,0.03)', cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               color: 'var(--text-light)',
             }}><X size={16} /></button>
@@ -76,8 +75,9 @@ export default function Offers({ client, business }) {
 
             <div style={{
               display: 'inline-block', padding: 16, background: 'white',
-              borderRadius: 16, border: '2px solid rgba(201,169,110,0.5)',
-              boxShadow: '0 0 30px rgba(201,169,110,0.2)',
+              borderRadius: 16,
+              border: '1px solid rgba(201,169,110,0.15)',
+              boxShadow: 'var(--shadow)',
               marginBottom: 16,
             }}>
               <img
@@ -87,9 +87,8 @@ export default function Offers({ client, business }) {
             </div>
 
             <div style={{
-              background: 'rgba(201,169,110,0.1)', borderRadius: 10, padding: '10px 16px',
-              marginBottom: 12, fontSize: 22, fontWeight: 800, letterSpacing: 4, color: 'var(--accent)',
-              border: '1px solid rgba(201,169,110,0.15)',
+              background: 'var(--bg-warm)', borderRadius: 12, padding: '10px 16px',
+              marginBottom: 12, fontSize: 22, fontWeight: 800, letterSpacing: 4, color: 'var(--accent-dark)',
             }}>
               {claimQR.code}
             </div>

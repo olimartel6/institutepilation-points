@@ -16,7 +16,6 @@ export default function Rewards({ client, business, setClient }) {
 
   const rewards = business?.rewards || config.rewards
 
-  // Keep dark theme in modal
   useEffect(() => {
     return () => {}
   }, [redemptionQR])
@@ -73,23 +72,23 @@ export default function Rewards({ client, business, setClient }) {
       {/* Redemption QR Modal */}
       {redemptionQR && (
         <div style={{
-          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)',
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
           zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: 20,
+          padding: 20, backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
         }}>
           <div style={{
-            background: 'rgba(20,20,25,0.95)', backdropFilter: 'blur(40px)', WebkitBackdropFilter: 'blur(40px)',
-            borderRadius: 20, padding: 32,
+            background: '#FFFFFF',
+            borderRadius: 24, padding: 36,
             maxWidth: 360, width: '100%', textAlign: 'center',
-            position: 'relative', border: '1px solid rgba(201,169,110,0.2)',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+            position: 'relative',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.15)',
           }}>
             <button
               onClick={() => setRedemptionQR(null)}
               style={{
-                position: 'absolute', top: 12, right: 12,
+                position: 'absolute', top: 14, right: 14,
                 width: 32, height: 32, borderRadius: '50%',
-                border: '1px solid rgba(201,169,110,0.15)', background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(0,0,0,0.08)', background: 'rgba(0,0,0,0.03)',
                 cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                 color: 'var(--text-light)',
               }}
@@ -106,8 +105,8 @@ export default function Rewards({ client, business, setClient }) {
             <div style={{
               display: 'inline-block', padding: 16,
               background: 'white', borderRadius: 16,
-              border: '2px solid rgba(201,169,110,0.5)',
-              boxShadow: '0 0 30px rgba(201,169,110,0.2)',
+              border: '1px solid rgba(201,169,110,0.2)',
+              boxShadow: 'var(--shadow)',
               marginBottom: 16,
             }}>
               <img
@@ -120,10 +119,9 @@ export default function Rewards({ client, business, setClient }) {
             </div>
 
             <div style={{
-              background: 'rgba(201,169,110,0.1)', borderRadius: 10, padding: '10px 16px',
+              background: 'var(--bg-warm)', borderRadius: 12, padding: '10px 16px',
               marginBottom: 12, fontSize: 22, fontWeight: 800, letterSpacing: 4,
-              color: 'var(--accent)',
-              border: '1px solid rgba(201,169,110,0.15)',
+              color: 'var(--accent-dark)',
             }}>
               {redemptionQR.code}
             </div>
@@ -148,13 +146,8 @@ export default function Rewards({ client, business, setClient }) {
           Votre solde
         </div>
         <div style={{
-          fontSize: 48, fontWeight: 800, marginTop: 4,
-          background: 'linear-gradient(135deg, #C9A96E, #e8d5a8, #C9A96E)',
-          backgroundSize: '200% auto',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          animation: 'shimmer 3s linear infinite',
+          fontSize: 52, fontWeight: 800, marginTop: 4,
+          color: 'var(--accent)',
         }}>
           {client?.points_balance || 0}
         </div>
@@ -179,16 +172,16 @@ export default function Rewards({ client, business, setClient }) {
                   style={{
                     width: 52, height: 52, borderRadius: 'var(--radius-sm)',
                     objectFit: 'cover', flexShrink: 0,
-                    border: canRedeem ? '2px solid var(--accent)' : '1px solid var(--border)',
+                    border: canRedeem ? '2px solid var(--accent)' : 'none',
+                    boxShadow: 'var(--shadow-sm)',
                   }}
                 />
               ) : (
                 <div style={{
                   width: 52, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: canRedeem ? 'linear-gradient(135deg, #C9A96E, #B08D4F)' : 'rgba(255,255,255,0.04)',
-                  color: canRedeem ? '#0a0a0a' : 'var(--text-muted)',
+                  background: canRedeem ? 'linear-gradient(135deg, #C9A96E, #B08D4F)' : 'rgba(0,0,0,0.03)',
+                  color: canRedeem ? '#FFFFFF' : 'var(--text-muted)',
                   borderRadius: 'var(--radius-sm)', flexShrink: 0,
-                  border: canRedeem ? 'none' : '1px solid rgba(201,169,110,0.1)',
                 }}>
                   {rewardIcons[reward.type] || <Gem size={22} />}
                 </div>

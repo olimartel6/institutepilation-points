@@ -96,7 +96,7 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
         <p>{config.tagline}</p>
 
         {referralFrom && mode === 'signup' && (
-          <div style={{ background: 'rgba(201,169,110,0.08)', border: '1px solid rgba(201,169,110,0.15)', borderRadius: 'var(--radius-sm)', padding: '12px 16px', marginBottom: 24, fontSize: 13, color: 'var(--accent)', fontWeight: 600 }}>
+          <div style={{ background: 'var(--bg-warm)', borderRadius: 'var(--radius-sm)', padding: '12px 16px', marginBottom: 24, fontSize: 13, color: 'var(--accent-dark)', fontWeight: 600 }}>
             Vous avez été parrainé(e) — inscrivez-vous pour recevoir {config.referralBonus} points!
           </div>
         )}

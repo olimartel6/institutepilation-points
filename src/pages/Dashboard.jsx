@@ -56,23 +56,21 @@ export default function Dashboard({ client, business, setClient }) {
         return (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            padding: '14px 18px', marginBottom: 16,
-            background: 'rgba(201,169,110,0.06)', borderRadius: 'var(--radius-sm)',
-            border: '1px solid rgba(201,169,110,0.15)',
-            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-            animation: 'fadeInUp 0.5s ease both',
+            padding: '16px 20px', marginBottom: 16,
+            background: 'var(--bg-warm)', borderRadius: 'var(--radius-sm)',
+            boxShadow: 'var(--shadow-sm)',
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 24 }}>{tier.icon}</span>
               <div>
-                <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--accent)' }}>{tier.name}</div>
+                <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--accent-dark)' }}>{tier.name}</div>
                 <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>x{tier.multiplier} points</div>
               </div>
             </div>
             {next && (
               <div style={{ fontSize: 11, color: 'var(--text-light)', textAlign: 'right' }}>
                 <div>Prochain: {next.name}</div>
-                <div style={{ fontWeight: 600, color: 'var(--accent-light)' }}>{next.min_points - (client?.total_points_earned || 0)} pts restants</div>
+                <div style={{ fontWeight: 600, color: 'var(--accent-dark)' }}>{next.min_points - (client?.total_points_earned || 0)} pts restants</div>
               </div>
             )}
           </div>
@@ -81,14 +79,13 @@ export default function Dashboard({ client, business, setClient }) {
 
       {isBirthdayToday(client?.birthday) && (
         <div style={{
-          padding: '16px', marginBottom: 16, borderRadius: 'var(--radius-sm)',
-          background: 'linear-gradient(135deg, rgba(201,169,110,0.2) 0%, rgba(176,141,79,0.15) 100%)',
-          border: '1px solid rgba(201,169,110,0.25)',
+          padding: '20px', marginBottom: 16, borderRadius: 'var(--radius-sm)',
+          background: 'linear-gradient(135deg, rgba(201,169,110,0.15) 0%, rgba(201,169,110,0.08) 100%)',
           textAlign: 'center', color: 'var(--text)',
-          animation: 'fadeInUp 0.5s ease both',
+          boxShadow: 'var(--shadow-sm)',
         }}>
           <div style={{ fontSize: 28 }}>🎂</div>
-          <div style={{ fontWeight: 700, fontSize: 16, marginTop: 4, color: 'var(--accent)' }}>Joyeux anniversaire!</div>
+          <div style={{ fontWeight: 700, fontSize: 16, marginTop: 4, color: 'var(--accent-dark)' }}>Joyeux anniversaire!</div>
           <div style={{ fontSize: 13, marginTop: 4, color: 'var(--text-light)' }}>100 points bonus ont été ajoutés à votre compte</div>
         </div>
       )}
@@ -131,13 +128,13 @@ export default function Dashboard({ client, business, setClient }) {
           <div className="stat-mini-label">Achats</div>
         </div>
         <div className="stat-mini">
-          <div className="stat-mini-number" style={{ color: 'var(--accent-light)' }}>
+          <div className="stat-mini-number" style={{ color: 'var(--accent-dark)' }}>
             {transactions.filter(t => t.type === 'visit').length}
           </div>
           <div className="stat-mini-label">Visites</div>
         </div>
         <div className="stat-mini">
-          <div className="stat-mini-number" style={{ color: '#a78bfa' }}>
+          <div className="stat-mini-number" style={{ color: '#7C5CFC' }}>
             {transactions.filter(t => t.type === 'referral').length}
           </div>
           <div className="stat-mini-label">Parrainages</div>
@@ -156,7 +153,7 @@ export default function Dashboard({ client, business, setClient }) {
                 style={{
                   width: 160, height: 160, borderRadius: 'var(--radius-sm)',
                   objectFit: 'cover', flexShrink: 0, scrollSnapAlign: 'start',
-                  border: '1px solid var(--border)',
+                  boxShadow: 'var(--shadow-sm)',
                 }}
               />
             ))}
@@ -176,7 +173,10 @@ export default function Dashboard({ client, business, setClient }) {
               <div style={{
                 width: 40, height: 40, borderRadius: 'var(--radius-sm)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(201,169,110,0.08)', border: '1px solid rgba(201,169,110,0.12)',
+                background: typeColors[t.type] === 'var(--success)' ? 'rgba(34,197,94,0.08)' :
+                  typeColors[t.type] === 'var(--danger)' ? 'rgba(239,68,68,0.08)' :
+                  typeColors[t.type] === '#7C5CFC' ? 'rgba(124,92,252,0.08)' :
+                  'rgba(201,169,110,0.08)',
                 color: typeColors[t.type] || 'var(--accent)', marginRight: 14, flexShrink: 0
               }}>
                 {typeIcons[t.type] || <CreditCard size={18} />}
