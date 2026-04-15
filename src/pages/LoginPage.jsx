@@ -9,6 +9,7 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [birthday, setBirthday] = useState('')
   const [code, setCode] = useState('')
@@ -20,6 +21,10 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
   const handleSendCode = async (e) => {
     e.preventDefault()
     if (!email || !password || !consent) return
+    if (password !== confirmPassword) {
+      alert('Les mots de passe ne correspondent pas.')
+      return
+    }
 
     setSending(true)
     const newCode = String(Math.floor(1000 + Math.random() * 9000))
@@ -76,6 +81,7 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
     setCode('')
     setGeneratedCode('')
     setPassword('')
+    setConfirmPassword('')
     setLoading(false)
     setSending(false)
   }
@@ -176,6 +182,20 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
               />
             </div>
             <div className="input-group">
+              <label>Confirmer le mot de passe *</label>
+              <input
+                type="password"
+                placeholder="Confirmez votre mot de passe"
+                value={confirmPassword}
+                onChange={e => setConfirmPassword(e.target.value)}
+                required
+                minLength={6}
+              />
+              {confirmPassword && password !== confirmPassword && (
+                <p style={{ fontSize: 12, color: 'var(--danger, #dc3545)', marginTop: 6 }}>Les mots de passe ne correspondent pas</p>
+              )}
+            </div>
+            <div className="input-group">
               <label>Numéro de téléphone (optionnel)</label>
               <input
                 type="tel"
@@ -203,7 +223,7 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
                 J'accepte la <a href="#/privacy" style={{ color: 'var(--accent)', fontWeight: 600 }}>politique de confidentialité</a> et je consens à recevoir des courriels relatifs à mon compte fidélité.
               </span>
             </label>
-            <button type="submit" className="btn btn-primary" disabled={!email || !password || !consent || sending}>
+            <button type="submit" className="btn btn-primary" disabled={!email || !password || !confirmPassword || password !== confirmPassword || !consent || sending}>
               <Mail size={16} />
               {sending ? 'Envoi...' : 'Recevoir mon code par courriel'}
             </button>
