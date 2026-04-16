@@ -421,6 +421,140 @@ const configs = {
     referralMessage: 'Rejoins Emporium et obtiens 75 points!',
     phone: '418-204-0514', address: 'Charlesbourg, Québec',
   },
+
+  // ====== BATCH 2 — COLD OUTREACH ======
+
+  'tatouage-toutankhamon': {
+    businessName: 'Tatouage Toutankhamon', slug: 'tatouage-toutankhamon', tagline: 'Votre fidélité encrée', logo: null, logoLight: null, favicon: '🖤',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Encre',
+    theme: { primary: '#1a1a1a', primaryLight: '#333', accent: '#c0392b', accentLight: '#e74c3c', accentDark: '#a02e22', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: '10% rabais tatouage', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 2, name: 'Piercing gratuit', points_required: 500, type: 'free_service', value: 'piercing' },
+      { id: 3, name: '50$ de rabais', points_required: 750, type: 'discount_fixed', value: 50 },
+      { id: 4, name: '1h de tatouage gratuit', points_required: 1500, type: 'free_service', value: 'tattoo1h' },
+    ],
+    referralMessage: 'Rejoins Toutankhamon et obtiens 75 points!',
+    phone: '', address: 'Vieux-Québec',
+  },
+
+  'paradoxe-tatouage': {
+    businessName: 'ParadoXe Tatouage', slug: 'paradoxe-tatouage', tagline: 'Chaque encre compte', logo: null, logoLight: null, favicon: '🖤',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points ParadoXe',
+    theme: { primary: '#0d0d0d', primaryLight: '#2a2a2a', accent: '#8b5cf6', accentLight: '#a78bfa', accentDark: '#7c3aed', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: '10% rabais tatouage', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 2, name: '50$ de rabais', points_required: 500, type: 'discount_fixed', value: 50 },
+      { id: 3, name: '1h de tatouage gratuit', points_required: 1000, type: 'free_service', value: 'tattoo1h' },
+    ],
+    referralMessage: 'Rejoins ParadoXe et obtiens 75 points!',
+    phone: '', address: 'Sainte-Foy, Québec',
+  },
+
+  'atomik-tattoo': {
+    businessName: 'Atomik Tattoo', slug: 'atomik-tattoo', tagline: 'Fidélité explosive', logo: null, logoLight: null, favicon: '⚡',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Atomik',
+    theme: { primary: '#1a1a1a', primaryLight: '#333', accent: '#22c55e', accentLight: '#4ade80', accentDark: '#16a34a', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: '10% rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 2, name: 'Bijou piercing gratuit', points_required: 500, type: 'free_service', value: 'bijou' },
+      { id: 3, name: '1h de tatouage gratuit', points_required: 1000, type: 'free_service', value: 'tattoo1h' },
+    ],
+    referralMessage: 'Rejoins Atomik et obtiens 75 points!',
+    phone: '', address: 'Québec',
+  },
+
+  'saint-paul-tattoo': {
+    businessName: 'Saint-Paul Tattoo', slug: 'saint-paul-tattoo', tagline: 'Art sur peau — fidélité récompensée', logo: null, logoLight: null, favicon: '🖤',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points SP',
+    theme: { primary: '#111', primaryLight: '#2a2a2a', accent: '#d97706', accentLight: '#f59e0b', accentDark: '#b45309', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: '10% rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 2, name: '50$ de rabais', points_required: 500, type: 'discount_fixed', value: 50 },
+      { id: 3, name: '1h gratuite', points_required: 1000, type: 'free_service', value: 'tattoo1h' },
+    ],
+    referralMessage: 'Rejoins Saint-Paul Tattoo et obtiens 75 points!',
+    phone: '', address: 'Vieux-Québec',
+  },
+
+  'fringuee-et-futee': {
+    businessName: 'Fringuée et Futée', slug: 'fringuee-et-futee', tagline: 'Mode locale — fidélité récompensée', logo: null, logoLight: null, favicon: '👗',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Fringue',
+    theme: { primary: '#2d2d2d', primaryLight: '#444', accent: '#ec4899', accentLight: '#f472b6', accentDark: '#db2777', bg: '#fdf5f9', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: '10% rabais', points_required: 200, type: 'discount_percent', value: 10 },
+      { id: 2, name: '25$ de rabais', points_required: 400, type: 'discount_fixed', value: 25 },
+      { id: 3, name: 'Accessoire gratuit', points_required: 600, type: 'free_service', value: 'accessoire' },
+      { id: 4, name: '50$ de rabais', points_required: 1000, type: 'discount_fixed', value: 50 },
+    ],
+    referralMessage: 'Rejoins Fringuée et Futée et obtiens 75 points!',
+    phone: '', address: 'Québec',
+  },
+
+  'chez-on-danse': {
+    businessName: 'Chez On Danse!', slug: 'chez-on-danse', tagline: 'Dansez, accumulez, récoltez', logo: null, logoLight: null, favicon: '💃',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Danse',
+    theme: { primary: '#1a1a2e', primaryLight: '#2d2d44', accent: '#e63946', accentLight: '#f06070', accentDark: '#c42d39', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Cours gratuit', points_required: 150, type: 'free_service', value: 'cours' },
+      { id: 2, name: '10% rabais session', points_required: 300, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Forfait 5 cours', points_required: 750, type: 'free_service', value: 'forfait5' },
+    ],
+    referralMessage: 'Rejoins Chez On Danse et obtiens 75 points!',
+    phone: '', address: 'Sainte-Foy, Québec',
+  },
+
+  'studio-dependance': {
+    businessName: 'Studio DepenDance', slug: 'studio-dependance', tagline: 'La danse, une dépendance récompensée', logo: null, logoLight: null, favicon: '🩰',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Danse',
+    theme: { primary: '#2a2040', primaryLight: '#3d3058', accent: '#a855f7', accentLight: '#c084fc', accentDark: '#9333ea', bg: '#faf5ff', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Cours gratuit', points_required: 150, type: 'free_service', value: 'cours' },
+      { id: 2, name: '10% rabais forfait', points_required: 300, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Session privée gratuite', points_required: 750, type: 'free_service', value: 'prive' },
+    ],
+    referralMessage: 'Rejoins Studio DepenDance et obtiens 75 points!',
+    phone: '', address: 'Québec',
+  },
+
+  'fromagerie-les-rivieres': {
+    businessName: 'Fromagerie Les Rivières', slug: 'fromagerie-les-rivieres', tagline: 'Fromages d\'ici — fidélité récompensée', logo: null, logoLight: null, favicon: '🧀',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Fromage',
+    theme: { primary: '#3c2a1a', primaryLight: '#5a4030', accent: '#d4a033', accentLight: '#e0b44d', accentDark: '#b8882a', bg: '#fdf6ef', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Fromage du jour gratuit', points_required: 100, type: 'free_service', value: 'fromage' },
+      { id: 2, name: '10% rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Plateau dégustation gratuit', points_required: 500, type: 'free_service', value: 'plateau' },
+    ],
+    referralMessage: 'Rejoins la Fromagerie Les Rivières et obtiens 75 points!',
+    phone: '', address: 'Les Rivières, Québec',
+  },
+
+  'madame-alice-fleuriste': {
+    businessName: 'Madame Alice Fleuriste', slug: 'madame-alice-fleuriste', tagline: 'Fleurs fraîches — fidélité fleurie', logo: null, logoLight: null, favicon: '💐',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Fleurs',
+    theme: { primary: '#2a3a2a', primaryLight: '#3d5040', accent: '#e891a8', accentLight: '#f0a8bc', accentDark: '#d47890', bg: '#fdf5f7', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Bouquet express gratuit', points_required: 200, type: 'free_service', value: 'bouquet' },
+      { id: 2, name: '15% rabais', points_required: 400, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Arrangement floral gratuit', points_required: 750, type: 'free_service', value: 'arrangement' },
+    ],
+    referralMessage: 'Rejoins Madame Alice et obtiens 75 points!',
+    phone: '', address: 'Limoilou, Québec',
+  },
+
+  'les-halles-en-fleurs': {
+    businessName: 'Les Halles en Fleurs', slug: 'les-halles-en-fleurs', tagline: 'Votre fleuriste fidélité', logo: null, logoLight: null, favicon: '🌺',
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Halles',
+    theme: { primary: '#2d3a2d', primaryLight: '#405040', accent: '#d4637a', accentLight: '#e0808f', accentDark: '#b84d63', bg: '#fdf5f6', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Rose gratuite', points_required: 100, type: 'free_service', value: 'rose' },
+      { id: 2, name: '10% rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Bouquet gratuit', points_required: 500, type: 'free_service', value: 'bouquet' },
+    ],
+    referralMessage: 'Rejoins Les Halles en Fleurs et obtiens 75 points!',
+    phone: '', address: 'Montcalm, Québec',
+  },
 };
 
 // Detect tenant from URL: ?tenant=slug or subdomain
