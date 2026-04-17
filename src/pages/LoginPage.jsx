@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Mail, ShieldCheck, ArrowLeft, Lock, UserPlus, LogIn } from 'lucide-react'
+import { Mail, ShieldCheck, ArrowLeft, Lock, UserPlus, LogIn, Eye } from 'lucide-react'
 import config from '../config'
 import { sendEmail } from '../services/supabase'
 
-export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFrom }) {
+export default function LoginPage({ onLogin, onSignup, onAdminLogin, onDemo, referralFrom }) {
   const [mode, setMode] = useState('login') // 'login' | 'signup'
   const [step, setStep] = useState('info') // 'info' | 'verify' (verify only for signup)
   const [name, setName] = useState('')
@@ -144,6 +144,17 @@ export default function LoginPage({ onLogin, onSignup, onAdminLogin, referralFro
               <UserPlus size={16} />
               Pas de compte? Inscrivez-vous
             </button>
+            {onDemo && (
+              <button
+                type="button"
+                className="btn btn-secondary"
+                style={{ marginTop: 8, opacity: 0.7 }}
+                onClick={onDemo}
+              >
+                <Eye size={16} />
+                Voir la démo sans créer de compte
+              </button>
+            )}
           </form>
         )}
 

@@ -65,6 +65,21 @@ function App() {
     setIsLoggedIn(true)
   }
 
+  const handleDemo = () => {
+    const demoClient = {
+      id: 'demo',
+      name: 'Marie',
+      email: 'demo@logiccsupplies.ca',
+      points_balance: 325,
+      total_points_earned: 575,
+      visit_count: 8,
+      referral_code: 'MARIE2024',
+      created_at: '2026-01-15',
+    }
+    setClient(demoClient)
+    setIsLoggedIn(true)
+  }
+
   const handleAdminLogin = () => {
     setIsLoggedIn(true)
     setIsAdmin(true)
@@ -93,6 +108,7 @@ function App() {
             onLogin={handleLogin}
             onSignup={handleSignup}
             onAdminLogin={handleAdminLogin}
+            onDemo={handleDemo}
             referralFrom={referralFrom}
           />
         </div>
