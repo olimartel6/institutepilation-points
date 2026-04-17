@@ -22,6 +22,20 @@ export default function Dashboard({ client, business, setClient, onLogout }) {
 
   useEffect(() => {
     if (!client?.id) return
+    if (client.id === 'demo') {
+      // Demo mode — use mock transactions
+      setTransactions([
+        { id: 1, type: 'purchase', points: 150, description: 'Achat — 15$', created_at: '2026-04-15' },
+        { id: 2, type: 'visit', points: 25, description: 'Visite en magasin', created_at: '2026-04-12' },
+        { id: 3, type: 'referral', points: 75, description: 'Parrainage — Sophie G.', created_at: '2026-04-08' },
+        { id: 4, type: 'purchase', points: 80, description: 'Achat — 8$', created_at: '2026-04-03' },
+        { id: 5, type: 'visit', points: 25, description: 'Visite en magasin', created_at: '2026-03-28' },
+        { id: 6, type: 'redemption', points: -250, description: 'Récompense échangée', created_at: '2026-03-20' },
+        { id: 7, type: 'purchase', points: 220, description: 'Achat — 22$', created_at: '2026-03-15' },
+      ])
+      setLoading(false)
+      return
+    }
     // Refresh client data + transactions
     Promise.all([
       getClientById(client.id),
