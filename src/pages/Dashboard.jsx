@@ -18,7 +18,7 @@ export default function Dashboard({ client, business, setClient, onLogout }) {
   const [transactions, setTransactions] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const rewards = business?.rewards || config.rewards
+  const rewards = (business?.rewards && business.rewards.length > 0) ? business.rewards : config.rewards
 
   useEffect(() => {
     if (!client?.id) return
