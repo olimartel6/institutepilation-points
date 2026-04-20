@@ -603,6 +603,96 @@ const configs = {
     referralMessage: 'Rejoins le programme fidelite Patisserie Ramona Tannous et obtiens 75 points gratuits!',
     phone: '418-877-4691', address: '3583 Rue de l\'Hetriere, Saint-Augustin-de-Desmaures',
   },
+
+  'boulangerie-bonneau': {
+    businessName: 'Boulangerie Bonneau', slug: 'boulangerie-bonneau', tagline: 'Pains et patisseries artisanales', logo: null, logoLight: null, favicon: '🍞',
+    heroImage: './images/boulangerie-bonneau/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Bonneau',
+    theme: { primary: '#8B6914', primaryLight: '#A07D1A', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Croissant gratuit', points_required: 100, type: 'free_service', value: 'croissant' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Pain artisanal gratuit', points_required: 500, type: 'free_service', value: 'pain' },
+      { id: 4, name: '25$ de credit', points_required: 1000, type: 'free_service', value: 'credit25' },
+    ],
+    referralMessage: 'Rejoins Boulangerie Bonneau et obtiens 75 points gratuits!',
+    phone: '418-650-2600', address: '1099 Bd de la Chaudiere, Cap-Rouge',
+  },
+
+  'paillard-cap-rouge': {
+    businessName: 'Paillard', slug: 'paillard-cap-rouge', tagline: 'Boulangerie-patisserie artisanale', logo: null, logoLight: null, favicon: '🥖',
+    heroImage: './images/paillard-cap-rouge/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Paillard',
+    theme: { primary: '#1A1A1A', primaryLight: '#333333', accent: '#C8A97E', accentLight: '#D9C0A0', accentDark: '#A88D62', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Cafe gratuit', points_required: 100, type: 'free_service', value: 'cafe' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Pizza gratuite', points_required: 500, type: 'free_service', value: 'pizza' },
+      { id: 4, name: '30$ de credit', points_required: 1000, type: 'free_service', value: 'credit30' },
+    ],
+    referralMessage: 'Rejoins Paillard et obtiens 75 points gratuits!',
+    phone: '', address: 'Cap-Rouge, Quebec',
+  },
+
+  'patisserie-de-la-gare': {
+    businessName: 'Patisserie De La Gare', slug: 'patisserie-de-la-gare', tagline: 'Patisseries fines', logo: null, logoLight: null, favicon: '🎂',
+    heroImage: './images/patisserie-de-la-gare/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points La Gare',
+    theme: { primary: '#C2185B', primaryLight: '#E91E63', accent: '#F06292', accentLight: '#F8BBD0', accentDark: '#AD1457', bg: '#FFF5F8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Patisserie gratuite', points_required: 100, type: 'free_service', value: 'patisserie' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Boite de patisseries', points_required: 500, type: 'free_service', value: 'boite' },
+      { id: 4, name: '25$ de credit', points_required: 1000, type: 'free_service', value: 'credit25' },
+    ],
+    referralMessage: 'Rejoins Patisserie De La Gare et obtiens 75 points gratuits!',
+    phone: '', address: '2900 Ch. Des Quatre-Bourgeois, Cap-Rouge',
+  },
+
+  'concept-beaute': {
+    businessName: 'Concept Beaute Signature', slug: 'concept-beaute', tagline: 'Coiffure et soins beaute', logo: null, logoLight: null, favicon: '💇',
+    heroImage: './images/concept-beaute/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Beaute',
+    theme: { primary: '#B8860B', primaryLight: '#DAA520', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF8F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Soin mains gratuit', points_required: 150, type: 'free_service', value: 'mains' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Coupe gratuite', points_required: 500, type: 'free_service', value: 'coupe' },
+      { id: 4, name: 'Soin complet gratuit', points_required: 1000, type: 'free_service', value: 'soin' },
+    ],
+    referralMessage: 'Rejoins Concept Beaute Signature et obtiens 75 points gratuits!',
+    phone: '418-877-4198', address: '990 Bd de la Chaudiere, Cap-Rouge',
+  },
+
+  'pro-coiffure': {
+    businessName: 'Pro Coiffure', slug: 'pro-coiffure', tagline: 'Coiffure et esthetique', logo: null, logoLight: null, favicon: '✂️',
+    heroImage: './images/pro-coiffure/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Pro',
+    theme: { primary: '#2C3E50', primaryLight: '#34495E', accent: '#3498DB', accentLight: '#5DADE2', accentDark: '#2980B9', bg: '#F5F7FA', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Produit capillaire gratuit', points_required: 150, type: 'free_service', value: 'produit' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Coupe gratuite', points_required: 500, type: 'free_service', value: 'coupe' },
+      { id: 4, name: 'Coloration gratuite', points_required: 1000, type: 'free_service', value: 'coloration' },
+    ],
+    referralMessage: 'Rejoins Pro Coiffure et obtiens 75 points gratuits!',
+    phone: '581-994-6867', address: '1070 Bd Chaudiere Local 110B, Cap-Rouge',
+  },
+
+  'coiffure-synergie': {
+    businessName: 'Coiffure Synergie', slug: 'coiffure-synergie', tagline: 'Coiffure, esthetique et bronzage', logo: null, logoLight: null, favicon: '💈',
+    heroImage: './images/coiffure-synergie/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Synergie',
+    theme: { primary: '#9B59B6', primaryLight: '#AF7AC5', accent: '#8E44AD', accentLight: '#BB8FCE', accentDark: '#7D3C98', bg: '#F9F5FC', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Produit gratuit', points_required: 150, type: 'free_service', value: 'produit' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Coupe gratuite', points_required: 500, type: 'free_service', value: 'coupe' },
+      { id: 4, name: 'Forfait complet gratuit', points_required: 1000, type: 'free_service', value: 'forfait' },
+    ],
+    referralMessage: 'Rejoins Coiffure Synergie et obtiens 75 points gratuits!',
+    phone: '', address: 'Cap-Rouge, Quebec',
+  },
 };
 
 // Detect tenant from URL: ?tenant=slug or subdomain
