@@ -589,7 +589,7 @@ const configs = {
   },
 
   'ramona-tannous': {
-    businessName: 'Patisserie Ramona Tannous', slug: 'ramona-tannous', tagline: 'Patisseries artisanales depuis 30 ans', logo: './images/ramona-tannous/logo.jpg', logoLight: './images/ramona-tannous/logo.jpg', favicon: '🥐',
+    businessName: 'Patisserie Ramona Tannous', slug: 'ramona-tannous', tagline: 'Patisseries artisanales depuis 30 ans', logo: './images/ramona-tannous/logo.png', logoLight: './images/ramona-tannous/logo.png', favicon: '🥐',
     heroImage: './images/ramona-tannous/food.jpg',
     galleryImages: ['./images/ramona-tannous/exterior.jpg'],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Ramona',
