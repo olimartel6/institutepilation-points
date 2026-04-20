@@ -695,8 +695,8 @@ const configs = {
   },
 
   'le-cafeier': {
-    businessName: 'Boutique Le Cafeier', slug: 'le-cafeier', tagline: 'Cafes, thes et gourmandises depuis 1992', logo: null, logoLight: null, favicon: '☕',
-    heroImage: './images/le-cafeier/hero.png', galleryImages: [],
+    businessName: 'Boutique Le Cafeier', slug: 'le-cafeier', tagline: 'Cafes, thes et gourmandises depuis 1992', logo: './images/le-cafeier/logo.jpg', logoLight: './images/le-cafeier/logo.jpg', favicon: '☕',
+    heroImage: './images/le-cafeier/store.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Cafeier',
     theme: { primary: '#5D4037', primaryLight: '#795548', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
     rewards: [
@@ -710,8 +710,8 @@ const configs = {
   },
 
   'les-bruleries': {
-    businessName: 'Les Bruleries', slug: 'les-bruleries', tagline: 'Micro-torrefacteur artisanal', logo: null, logoLight: null, favicon: '☕',
-    heroImage: './images/les-bruleries/hero.png', galleryImages: [],
+    businessName: 'Les Bruleries', slug: 'les-bruleries', tagline: 'Micro-torrefacteur artisanal', logo: './images/les-bruleries/logo.png', logoLight: './images/les-bruleries/logo.png', favicon: '☕',
+    heroImage: './images/les-bruleries/latte.png', galleryImages: ['./images/les-bruleries/ambiance.png'],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Bruleries',
     theme: { primary: '#3E2723', primaryLight: '#5D4037', accent: '#8D6E63', accentLight: '#A1887F', accentDark: '#6D4C41', bg: '#EFEBE9', font: 'system-ui, sans-serif' },
     rewards: [
@@ -726,7 +726,7 @@ const configs = {
 
   'brulerie-rousseau': {
     businessName: 'Brulerie Rousseau', slug: 'brulerie-rousseau', tagline: 'Expert en cafe depuis 1867', logo: null, logoLight: null, favicon: '☕',
-    heroImage: './images/brulerie-rousseau/hero.png', galleryImages: [],
+    heroImage: './images/brulerie-rousseau/hero.jpg', galleryImages: ['./images/brulerie-rousseau/founders.jpg'],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Rousseau',
     theme: { primary: '#6D4C41', primaryLight: '#8D6E63', accent: '#A1887F', accentLight: '#BCAAA4', accentDark: '#5D4037', bg: '#FBF5F0', font: 'system-ui, sans-serif' },
     rewards: [
