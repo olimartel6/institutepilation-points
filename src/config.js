@@ -846,7 +846,7 @@ const configs = {
 
   'krwn': {
     businessName: 'KRWN Barbershop', slug: 'krwn', tagline: 'Coupes premium hommes et femmes', logo: './images/krwn/logo.png', logoLight: './images/krwn/logo.png', favicon: '✂️',
-    heroImage: './images/krwn/logo.png', galleryImages: [],
+    heroImage: './images/krwn/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points KRWN',
     theme: { primary: '#000000', primaryLight: '#222', accent: '#B8860B', accentLight: '#DAA520', accentDark: '#8B6914', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
     rewards: [
