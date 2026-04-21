@@ -1056,7 +1056,7 @@ const configs = {
 
   'croc-mignon': {
     businessName: 'Le Croc Mignon', slug: 'croc-mignon', tagline: 'Boucherie artisanale — viandes AAA et fruits de mer', logo: './images/croc-mignon/logo.png', logoLight: './images/croc-mignon/logo.png', favicon: '🥩',
-    heroImage: './images/croc-mignon/hero.png', galleryImages: [],
+    heroImage: './images/croc-mignon/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Croc',
     theme: { primary: '#8B2C2C', primaryLight: '#A64545', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FBF5F2', font: 'system-ui, sans-serif' },
     rewards: [
@@ -1101,7 +1101,7 @@ const configs = {
 
   'fleuriste-faubourg': {
     businessName: 'Fleuriste du Faubourg', slug: 'fleuriste-faubourg', tagline: 'Artisan fleuriste créateur — fleurs, plantes et déco', logo: './images/fleuriste-faubourg/logo.png', logoLight: './images/fleuriste-faubourg/logo.png', favicon: '💐',
-    heroImage: null, galleryImages: [],
+    heroImage: './images/fleuriste-faubourg/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Faubourg',
     theme: { primary: '#6B8E5A', primaryLight: '#88A877', accent: '#D4B5D8', accentLight: '#E3CBE6', accentDark: '#B594BA', bg: '#F7F9F4', font: 'system-ui, sans-serif' },
     rewards: [
@@ -1115,8 +1115,8 @@ const configs = {
   },
 
   'champagne-chocolatier': {
-    businessName: 'Champagne Chocolatier', slug: 'champagne-chocolatier', tagline: 'Chocolaterie artisanale depuis 20 ans — Saint-Roch', logo: null, logoLight: null, favicon: '🍫',
-    heroImage: null, galleryImages: [],
+    businessName: 'Champagne Chocolatier', slug: 'champagne-chocolatier', tagline: 'Chocolaterie artisanale depuis 20 ans — Saint-Roch', logo: './images/champagne-chocolatier/logo.jpg', logoLight: './images/champagne-chocolatier/logo.jpg', favicon: '🍫',
+    heroImage: './images/champagne-chocolatier/logo.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Champagne',
     theme: { primary: '#4A2C1E', primaryLight: '#6B4130', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FBF7F2', font: 'system-ui, sans-serif' },
     rewards: [
