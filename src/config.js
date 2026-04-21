@@ -996,7 +996,7 @@ const configs = {
 
   'barbier-nomade': {
     businessName: 'Barbier Nomade', slug: 'barbier-nomade', tagline: "L'expérience barbier hors du commun", logo: null, logoLight: null, favicon: '💈',
-    heroImage: './images/barbier-nomade/hero.png', galleryImages: [],
+    heroImage: './images/barbier-nomade/interior.jpg', galleryImages: ['./images/barbier-nomade/barber.jpg'],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Nomade',
     theme: { primary: '#2C3E50', primaryLight: '#34495E', accent: '#E67E22', accentLight: '#F39C12', accentDark: '#D35400', bg: '#F8F6F0', font: 'system-ui, sans-serif' },
     rewards: [
@@ -1011,7 +1011,7 @@ const configs = {
 
   'studio-rebel': {
     businessName: 'Studio Rebel', slug: 'studio-rebel', tagline: 'Yoga, Pilates, Buti et plus', logo: './images/studio-rebel/hero.png', logoLight: './images/studio-rebel/hero.png', favicon: '🧘',
-    heroImage: './images/studio-rebel/hero.png', galleryImages: [],
+    heroImage: './images/studio-rebel/studio.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Rebel',
     theme: { primary: '#9B59B6', primaryLight: '#AF7AC5', accent: '#8E44AD', accentLight: '#BB8FCE', accentDark: '#7D3C98', bg: '#F9F5FC', font: 'system-ui, sans-serif' },
     rewards: [
@@ -1026,7 +1026,7 @@ const configs = {
 
   'boutique-tropicale': {
     businessName: 'Boutique Tropicale', slug: 'boutique-tropicale', tagline: 'Animalerie spécialisée depuis 1984', logo: null, logoLight: null, favicon: '🐾',
-    heroImage: './images/boutique-tropicale/hero.jpg', galleryImages: [],
+    heroImage: './images/boutique-tropicale/aquarium.jpg', galleryImages: ['./images/boutique-tropicale/aquarium2.jpg'],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Tropicale',
     theme: { primary: '#27AE60', primaryLight: '#2ECC71', accent: '#16A085', accentLight: '#1ABC9C', accentDark: '#0E6655', bg: '#F0FFF4', font: 'system-ui, sans-serif' },
     rewards: [
@@ -1041,7 +1041,7 @@ const configs = {
 
   'barbier-le-saloon': {
     businessName: 'Barbier Le Saloon', slug: 'barbier-le-saloon', tagline: 'Barbershop authentique', logo: null, logoLight: null, favicon: '💈',
-    heroImage: './images/barbier-le-saloon/hero.png', galleryImages: [],
+    heroImage: './images/barbier-le-saloon/interior.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Saloon',
     theme: { primary: '#8B4513', primaryLight: '#A0522D', accent: '#D2691E', accentLight: '#CD853F', accentDark: '#8B4513', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
     rewards: [
