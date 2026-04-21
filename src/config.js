@@ -561,7 +561,7 @@ const configs = {
     heroImage: './images/cafe-vieux-cap-rouge/hero.png',
     galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Cafe',
-    theme: { primary: '#5D4037', primaryLight: '#795548', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    theme: { primary: '#E85420', primaryLight: '#F06830', accent: '#5D4037', accentLight: '#795548', accentDark: '#3E2723', bg: '#FFF5F0', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Cafe gratuit', points_required: 100, type: 'free_service', value: 'cafe' },
       { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
@@ -683,7 +683,7 @@ const configs = {
     businessName: 'Coiffure Synergie', slug: 'coiffure-synergie', tagline: 'Coiffure, esthetique et bronzage', logo: null, logoLight: null, favicon: '💈',
     heroImage: './images/coiffure-synergie/hero.png', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Synergie',
-    theme: { primary: '#9B59B6', primaryLight: '#AF7AC5', accent: '#8E44AD', accentLight: '#BB8FCE', accentDark: '#7D3C98', bg: '#F9F5FC', font: 'system-ui, sans-serif' },
+    theme: { primary: '#6B4E5E', primaryLight: '#8A6878', accent: '#E8C4C0', accentLight: '#F0D5D2', accentDark: '#C4868B', bg: '#F9F5F7', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Produit gratuit', points_required: 150, type: 'free_service', value: 'produit' },
       { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
@@ -743,7 +743,7 @@ const configs = {
     businessName: 'Philtre Café', slug: 'philtre-cafe', tagline: 'Café de spécialité, végétarien et sans gluten', logo: null, logoLight: null, favicon: '☕',
     heroImage: './images/philtre-cafe/interior.jpg', galleryImages: ['./images/philtre-cafe/latte.jpg'],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Philtre',
-    theme: { primary: '#2C3E50', primaryLight: '#34495E', accent: '#E67E22', accentLight: '#F39C12', accentDark: '#D35400', bg: '#FDF8F2', font: 'system-ui, sans-serif' },
+    theme: { primary: '#E8C4C0', primaryLight: '#F0D5D2', accent: '#2C3E50', accentLight: '#34495E', accentDark: '#1A252F', bg: '#FDF8F7', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Café gratuit', points_required: 100, type: 'free_service', value: 'cafe' },
       { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
@@ -773,7 +773,7 @@ const configs = {
     businessName: 'Salons Darbourg', slug: 'salons-darbourg', tagline: 'Coiffure et esthétique', logo: './images/salons-darbourg/logo.png', logoLight: './images/salons-darbourg/logo.png', favicon: '✂️',
     heroImage: './images/salons-darbourg/service.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Darbourg',
-    theme: { primary: '#D4A76A', primaryLight: '#E0BB88', accent: '#B8860B', accentLight: '#DAA520', accentDark: '#8B6914', bg: '#FDF8F0', font: 'system-ui, sans-serif' },
+    theme: { primary: '#1C1C1C', primaryLight: '#333', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF8F0', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Produit gratuit', points_required: 150, type: 'free_service', value: 'produit' },
       { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
@@ -833,7 +833,7 @@ const configs = {
     businessName: 'Barbershop El Padrino', slug: 'el-padrino', tagline: 'Barbershop premium pour hommes', logo: null, logoLight: null, favicon: '💈',
     heroImage: './images/el-padrino/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Padrino',
-    theme: { primary: '#1A1A1A', primaryLight: '#333', accent: '#D4AF37', accentLight: '#F0D060', accentDark: '#B8960F', bg: '#F8F6F0', font: 'system-ui, sans-serif' },
+    theme: { primary: '#121212', primaryLight: '#2A2A2A', accent: '#C4868B', accentLight: '#D9A5A9', accentDark: '#A86B6F', bg: '#FAF5F5', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Coupe gratuite', points_required: 150, type: 'free_service', value: 'coupe' },
       { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
@@ -848,7 +848,7 @@ const configs = {
     businessName: 'KRWN Barbershop', slug: 'krwn', tagline: 'Coupes premium hommes et femmes', logo: './images/krwn/logo.png', logoLight: './images/krwn/logo.png', favicon: '✂️',
     heroImage: './images/krwn/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points KRWN',
-    theme: { primary: '#000000', primaryLight: '#222', accent: '#B8860B', accentLight: '#DAA520', accentDark: '#8B6914', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    theme: { primary: '#000000', primaryLight: '#222', accent: '#108474', accentLight: '#15A895', accentDark: '#0A6658', bg: '#F2FAF8', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Produit capillaire gratuit', points_required: 100, type: 'free_service', value: 'produit' },
       { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
@@ -893,7 +893,7 @@ const configs = {
     businessName: 'Au Bonheur des Pains', slug: 'au-bonheur-des-pains', tagline: 'Boulangerie artisanale', logo: null, logoLight: null, favicon: '🥐',
     heroImage: './images/au-bonheur-des-pains/hero.png', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Bonheur',
-    theme: { primary: '#8B5A2B', primaryLight: '#A0522D', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    theme: { primary: '#E8A838', primaryLight: '#F0BC5C', accent: '#5D4037', accentLight: '#795548', accentDark: '#3E2723', bg: '#FDF8EF', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Viennoiserie gratuite', points_required: 100, type: 'free_service', value: 'viennoiserie' },
       { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
@@ -923,7 +923,7 @@ const configs = {
     businessName: 'Le Goût du Plaisir', slug: 'le-gout-du-plaisir', tagline: 'Boulangerie, pâtisserie et sandwichs', logo: './images/le-gout-du-plaisir/logo.png', logoLight: './images/le-gout-du-plaisir/logo.png', favicon: '🎂',
     heroImage: './images/le-gout-du-plaisir/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Plaisir',
-    theme: { primary: '#A0522D', primaryLight: '#CD853F', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    theme: { primary: '#4A3748', primaryLight: '#6B5268', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#F9F5F8', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Pâtisserie gratuite', points_required: 100, type: 'free_service', value: 'patisserie' },
       { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
@@ -938,7 +938,7 @@ const configs = {
     businessName: 'Limoncello Bistro Italien', slug: 'limoncello', tagline: 'Bistro italien au coeur de Limoilou', logo: './images/limoncello/logo.jpg', logoLight: './images/limoncello/logo.jpg', favicon: '🍝',
     heroImage: './images/limoncello/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Limoncello',
-    theme: { primary: '#E74C3C', primaryLight: '#EC7063', accent: '#F39C12', accentLight: '#F7DC6F', accentDark: '#D68910', bg: '#FFF8F0', font: 'system-ui, sans-serif' },
+    theme: { primary: '#1A1A1A', primaryLight: '#333', accent: '#F5D547', accentLight: '#F7E070', accentDark: '#D4B530', bg: '#FFFDF5', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Dessert gratuit', points_required: 100, type: 'free_service', value: 'dessert' },
       { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
@@ -953,7 +953,7 @@ const configs = {
     businessName: 'Boutique MUR', slug: 'boutique-mur', tagline: 'Mode européenne haut de gamme', logo: './images/boutique-mur/logo.png', logoLight: './images/boutique-mur/logo.png', favicon: '👗',
     heroImage: './images/boutique-mur/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points MUR',
-    theme: { primary: '#2C2C2C', primaryLight: '#444', accent: '#B8860B', accentLight: '#DAA520', accentDark: '#8B6914', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    theme: { primary: '#DA225E', primaryLight: '#E84580', accent: '#2C2C2C', accentLight: '#444', accentDark: '#1A1A1A', bg: '#FFF5F8', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Accessoire gratuit', points_required: 200, type: 'free_service', value: 'accessoire' },
       { id: 2, name: '15% de rabais', points_required: 400, type: 'discount_percent', value: 15 },
@@ -968,7 +968,7 @@ const configs = {
     businessName: 'Article 721', slug: 'article-721', tagline: 'Créations locales et trouvailles uniques', logo: './images/article-721/logo.jpg', logoLight: './images/article-721/logo.jpg', favicon: '🎁',
     heroImage: './images/article-721/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points 721',
-    theme: { primary: '#E67E22', primaryLight: '#F39C12', accent: '#2C3E50', accentLight: '#34495E', accentDark: '#1A252F', bg: '#FFF8F0', font: 'system-ui, sans-serif' },
+    theme: { primary: '#E99393', primaryLight: '#F0ABAB', accent: '#2C3E50', accentLight: '#34495E', accentDark: '#1A252F', bg: '#FFF8F8', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Carte gratuite', points_required: 50, type: 'free_service', value: 'carte' },
       { id: 2, name: '10% de rabais', points_required: 200, type: 'discount_percent', value: 10 },
@@ -983,7 +983,7 @@ const configs = {
     businessName: 'Atout-Poils', slug: 'atout-poils', tagline: 'Toilettage pour chiens et chats', logo: null, logoLight: null, favicon: '🐕',
     heroImage: './images/atout-poils/hero.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Poils',
-    theme: { primary: '#27AE60', primaryLight: '#2ECC71', accent: '#16A085', accentLight: '#1ABC9C', accentDark: '#0E6655', bg: '#F0FFF4', font: 'system-ui, sans-serif' },
+    theme: { primary: '#5CB8E6', primaryLight: '#7CC8EE', accent: '#2C3E50', accentLight: '#34495E', accentDark: '#1A252F', bg: '#F0F8FF', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Coupe de griffes gratuite', points_required: 100, type: 'free_service', value: 'griffes' },
       { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
@@ -998,7 +998,7 @@ const configs = {
     businessName: 'Barbier Nomade', slug: 'barbier-nomade', tagline: "L'expérience barbier hors du commun", logo: null, logoLight: null, favicon: '💈',
     heroImage: './images/barbier-nomade/interior.jpg', galleryImages: ['./images/barbier-nomade/barber.jpg'],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Nomade',
-    theme: { primary: '#2C3E50', primaryLight: '#34495E', accent: '#E67E22', accentLight: '#F39C12', accentDark: '#D35400', bg: '#F8F6F0', font: 'system-ui, sans-serif' },
+    theme: { primary: '#1A1A1A', primaryLight: '#333', accent: '#E67E22', accentLight: '#F39C12', accentDark: '#D35400', bg: '#F8F6F0', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Coupe gratuite', points_required: 150, type: 'free_service', value: 'coupe' },
       { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
@@ -1028,7 +1028,7 @@ const configs = {
     businessName: 'Boutique Tropicale', slug: 'boutique-tropicale', tagline: 'Animalerie spécialisée depuis 1984', logo: null, logoLight: null, favicon: '🐾',
     heroImage: './images/boutique-tropicale/aquarium.jpg', galleryImages: ['./images/boutique-tropicale/aquarium2.jpg'],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Tropicale',
-    theme: { primary: '#27AE60', primaryLight: '#2ECC71', accent: '#16A085', accentLight: '#1ABC9C', accentDark: '#0E6655', bg: '#F0FFF4', font: 'system-ui, sans-serif' },
+    theme: { primary: '#9B046F', primaryLight: '#C0088A', accent: '#27AE60', accentLight: '#2ECC71', accentDark: '#1E8449', bg: '#FFF5FB', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Gâterie animale gratuite', points_required: 50, type: 'free_service', value: 'gaterie' },
       { id: 2, name: '10% de rabais', points_required: 200, type: 'discount_percent', value: 10 },
@@ -1043,7 +1043,7 @@ const configs = {
     businessName: 'Barbier Le Saloon', slug: 'barbier-le-saloon', tagline: 'Barbershop authentique', logo: null, logoLight: null, favicon: '💈',
     heroImage: './images/barbier-le-saloon/interior.jpg', galleryImages: [],
     pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Saloon',
-    theme: { primary: '#8B4513', primaryLight: '#A0522D', accent: '#D2691E', accentLight: '#CD853F', accentDark: '#8B4513', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    theme: { primary: '#006AFF', primaryLight: '#3388FF', accent: '#1A1A1A', accentLight: '#333', accentDark: '#000', bg: '#F0F5FF', font: 'system-ui, sans-serif' },
     rewards: [
       { id: 1, name: 'Coupe gratuite', points_required: 150, type: 'free_service', value: 'coupe' },
       { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
