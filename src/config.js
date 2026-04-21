@@ -993,6 +993,66 @@ const configs = {
     referralMessage: 'Rejoins Atout-Poils et obtiens 75 points gratuits!',
     phone: '418-838-4322', address: '4081 Rue des Turquoises, Lévis',
   },
+
+  'barbier-nomade': {
+    businessName: 'Barbier Nomade', slug: 'barbier-nomade', tagline: "L'expérience barbier hors du commun", logo: null, logoLight: null, favicon: '💈',
+    heroImage: './images/barbier-nomade/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Nomade',
+    theme: { primary: '#2C3E50', primaryLight: '#34495E', accent: '#E67E22', accentLight: '#F39C12', accentDark: '#D35400', bg: '#F8F6F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Coupe gratuite', points_required: 150, type: 'free_service', value: 'coupe' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Forfait barbe + coupe', points_required: 500, type: 'free_service', value: 'forfait' },
+      { id: 4, name: 'Forfait VIP gratuit', points_required: 1000, type: 'free_service', value: 'vip' },
+    ],
+    referralMessage: 'Rejoins Barbier Nomade et obtiens 75 points gratuits!',
+    phone: '581-307-3325', address: '3128 Chemin Royal, Beauport',
+  },
+
+  'studio-rebel': {
+    businessName: 'Studio Rebel', slug: 'studio-rebel', tagline: 'Yoga, Pilates, Buti et plus', logo: './images/studio-rebel/hero.png', logoLight: './images/studio-rebel/hero.png', favicon: '🧘',
+    heroImage: './images/studio-rebel/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Rebel',
+    theme: { primary: '#9B59B6', primaryLight: '#AF7AC5', accent: '#8E44AD', accentLight: '#BB8FCE', accentDark: '#7D3C98', bg: '#F9F5FC', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Cours gratuit', points_required: 100, type: 'free_service', value: 'cours' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: '5 cours gratuits', points_required: 500, type: 'free_service', value: '5cours' },
+      { id: 4, name: 'Mois illimité gratuit', points_required: 1200, type: 'free_service', value: 'mois' },
+    ],
+    referralMessage: 'Rejoins Studio Rebel et obtiens 75 points gratuits!',
+    phone: '', address: '281 rue St-Vallier Est, Québec',
+  },
+
+  'boutique-tropicale': {
+    businessName: 'Boutique Tropicale', slug: 'boutique-tropicale', tagline: 'Animalerie spécialisée depuis 1984', logo: null, logoLight: null, favicon: '🐾',
+    heroImage: './images/boutique-tropicale/hero.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Tropicale',
+    theme: { primary: '#27AE60', primaryLight: '#2ECC71', accent: '#16A085', accentLight: '#1ABC9C', accentDark: '#0E6655', bg: '#F0FFF4', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Gâterie animale gratuite', points_required: 50, type: 'free_service', value: 'gaterie' },
+      { id: 2, name: '10% de rabais', points_required: 200, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Jouet gratuit', points_required: 400, type: 'free_service', value: 'jouet' },
+      { id: 4, name: '25$ de crédit', points_required: 800, type: 'free_service', value: 'credit25' },
+    ],
+    referralMessage: 'Rejoins Boutique Tropicale et obtiens 75 points gratuits!',
+    phone: '', address: 'Québec',
+  },
+
+  'barbier-le-saloon': {
+    businessName: 'Barbier Le Saloon', slug: 'barbier-le-saloon', tagline: 'Barbershop authentique', logo: null, logoLight: null, favicon: '💈',
+    heroImage: './images/barbier-le-saloon/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Saloon',
+    theme: { primary: '#8B4513', primaryLight: '#A0522D', accent: '#D2691E', accentLight: '#CD853F', accentDark: '#8B4513', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Coupe gratuite', points_required: 150, type: 'free_service', value: 'coupe' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Rasage gratuit', points_required: 500, type: 'free_service', value: 'rasage' },
+      { id: 4, name: 'Forfait complet gratuit', points_required: 1000, type: 'free_service', value: 'forfait' },
+    ],
+    referralMessage: 'Rejoins Barbier Le Saloon et obtiens 75 points gratuits!',
+    phone: '581-989-1719', address: 'Charlesbourg, Québec',
+  },
 };
 
 // Detect tenant from URL: ?tenant=slug or subdomain
