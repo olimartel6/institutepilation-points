@@ -1053,6 +1053,81 @@ const configs = {
     referralMessage: 'Rejoins Barbier Le Saloon et obtiens 75 points gratuits!',
     phone: '581-989-1719', address: 'Charlesbourg, Québec',
   },
+
+  'croc-mignon': {
+    businessName: 'Le Croc Mignon', slug: 'croc-mignon', tagline: 'Boucherie artisanale — viandes AAA et fruits de mer', logo: './images/croc-mignon/logo.png', logoLight: './images/croc-mignon/logo.png', favicon: '🥩',
+    heroImage: './images/croc-mignon/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Croc',
+    theme: { primary: '#8B2C2C', primaryLight: '#A64545', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FBF5F2', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: '10% de rabais', points_required: 200, type: 'discount_percent', value: 10 },
+      { id: 2, name: 'Saucisse maison gratuite', points_required: 400, type: 'free_service', value: 'saucisse' },
+      { id: 3, name: 'Steak de bœuf Highland gratuit', points_required: 800, type: 'free_service', value: 'steak' },
+      { id: 4, name: '50$ de crédit', points_required: 1500, type: 'free_service', value: 'credit50' },
+    ],
+    referralMessage: 'Rejoins Le Croc Mignon et obtiens 75 points gratuits!',
+    phone: '581-741-7050', address: '594 3e Avenue, Limoilou',
+  },
+
+  'meandres': {
+    businessName: 'Lunetterie des Méandres', slug: 'meandres', tagline: 'Lunetterie indépendante — montures de designers', logo: './images/meandres/logo.svg', logoLight: './images/meandres/logo.svg', favicon: '👓',
+    heroImage: './images/meandres/hero.jpg', galleryImages: [],
+    pointsPerDollar: 5, referralBonus: 100, visitBonus: 50, pointsLabel: 'Points Méandres',
+    theme: { primary: '#1A1A1A', primaryLight: '#333333', accent: '#C49E5A', accentLight: '#D4B577', accentDark: '#A68344', bg: '#FAFAF7', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: '25$ sur prochain achat', points_required: 250, type: 'free_service', value: 'credit25' },
+      { id: 2, name: '10% de rabais sur montures', points_required: 500, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Examen de la vue gratuit', points_required: 800, type: 'free_service', value: 'examen' },
+      { id: 4, name: '100$ de crédit', points_required: 1500, type: 'free_service', value: 'credit100' },
+    ],
+    referralMessage: 'Rejoins Lunetterie des Méandres et obtiens 100 points gratuits!',
+    phone: '418-847-0505', address: '2500 rue Beaurevoir, Lebourgneuf',
+  },
+
+  'mathieu-performance': {
+    businessName: 'Mathieu Performance', slug: 'mathieu-performance', tagline: 'Boutique de vélos — vente, atelier et mise au point', logo: './images/mathieu-performance/logo.png', logoLight: './images/mathieu-performance/logo.png', favicon: '🚴',
+    heroImage: './images/mathieu-performance/hero.webp', galleryImages: [],
+    pointsPerDollar: 5, referralBonus: 100, visitBonus: 50, pointsLabel: 'Points Mathieu',
+    theme: { primary: '#1E4D9B', primaryLight: '#2E5DAD', accent: '#FF6B35', accentLight: '#FF8A5E', accentDark: '#E55423', bg: '#F4F7FB', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Mise au point gratuite', points_required: 300, type: 'free_service', value: 'miseaupoint' },
+      { id: 2, name: '15% sur accessoires', points_required: 500, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Casque offert', points_required: 800, type: 'free_service', value: 'casque' },
+      { id: 4, name: '150$ sur prochain vélo', points_required: 2000, type: 'free_service', value: 'credit150' },
+    ],
+    referralMessage: 'Rejoins Mathieu Performance et obtiens 100 points gratuits!',
+    phone: '418-524-2650', address: '496 1re Avenue, Limoilou',
+  },
+
+  'fleuriste-faubourg': {
+    businessName: 'Fleuriste du Faubourg', slug: 'fleuriste-faubourg', tagline: 'Artisan fleuriste créateur — fleurs, plantes et déco', logo: './images/fleuriste-faubourg/logo.png', logoLight: './images/fleuriste-faubourg/logo.png', favicon: '💐',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Faubourg',
+    theme: { primary: '#6B8E5A', primaryLight: '#88A877', accent: '#D4B5D8', accentLight: '#E3CBE6', accentDark: '#B594BA', bg: '#F7F9F4', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Bouquet saisonnier 10$', points_required: 150, type: 'free_service', value: 'bouquet10' },
+      { id: 2, name: '15% sur bouquet sur mesure', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Plante verte gratuite', points_required: 500, type: 'free_service', value: 'plante' },
+      { id: 4, name: 'Composition florale 50$', points_required: 1000, type: 'free_service', value: 'composition' },
+    ],
+    referralMessage: 'Rejoins Fleuriste du Faubourg et obtiens 75 points gratuits!',
+    phone: '418-914-9094', address: '565B rue Saint-Jean, Québec',
+  },
+
+  'champagne-chocolatier': {
+    businessName: 'Champagne Chocolatier', slug: 'champagne-chocolatier', tagline: 'Chocolaterie artisanale depuis 20 ans — Saint-Roch', logo: null, logoLight: null, favicon: '🍫',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Champagne',
+    theme: { primary: '#4A2C1E', primaryLight: '#6B4130', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FBF7F2', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Boîte de truffes (6)', points_required: 200, type: 'free_service', value: 'truffes' },
+      { id: 2, name: '10% de rabais', points_required: 350, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Tablette de chocolat fin', points_required: 500, type: 'free_service', value: 'tablette' },
+      { id: 4, name: 'Coffret cadeau 50$', points_required: 1200, type: 'free_service', value: 'coffret' },
+    ],
+    referralMessage: 'Rejoins Champagne Chocolatier et obtiens 75 points gratuits!',
+    phone: '418-522-0708', address: '525 rue Saint-Joseph Est, Saint-Roch',
+  },
 };
 
 // Detect tenant from URL: ?tenant=slug or subdomain
