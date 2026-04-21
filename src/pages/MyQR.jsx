@@ -16,9 +16,10 @@ export default function MyQR({ client }) {
     <div className="page-content">
       <div style={{ textAlign: 'center', padding: '20px 0 8px' }}>
         {config.logo ? (
-          <img src={config.logo} alt="" style={{ height: 40, marginBottom: 12 }} />
-        ) : null}
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)' }}>{config.businessName}</h2>
+          <img src={config.logo} alt={config.businessName} style={{ height: 40, marginBottom: 12 }} />
+        ) : (
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)' }}>{config.businessName}</h2>
+        )}
         <p style={{ fontSize: 14, color: 'var(--text-light)', marginTop: 4 }}>{user.name || 'Client'}</p>
       </div>
 
