@@ -828,6 +828,171 @@ const configs = {
     referralMessage: 'Rejoins Bar Le St-Aug et obtiens 75 points gratuits!',
     phone: '418-878-5321', address: '201 Route 138, Saint-Augustin',
   },
+
+  'el-padrino': {
+    businessName: 'Barbershop El Padrino', slug: 'el-padrino', tagline: 'Barbershop premium pour hommes', logo: null, logoLight: null, favicon: '💈',
+    heroImage: './images/el-padrino/hero.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Padrino',
+    theme: { primary: '#1A1A1A', primaryLight: '#333', accent: '#D4AF37', accentLight: '#F0D060', accentDark: '#B8960F', bg: '#F8F6F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Coupe gratuite', points_required: 150, type: 'free_service', value: 'coupe' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Rasage hot towel gratuit', points_required: 500, type: 'free_service', value: 'rasage' },
+      { id: 4, name: 'Forfait VIP gratuit', points_required: 1000, type: 'free_service', value: 'vip' },
+    ],
+    referralMessage: 'Rejoins El Padrino et obtiens 75 points gratuits!',
+    phone: '418-686-8856', address: '1409 Ch Sainte-Foy, Québec',
+  },
+
+  'krwn': {
+    businessName: 'KRWN Barbershop', slug: 'krwn', tagline: 'Coupes premium hommes et femmes', logo: './images/krwn/logo.png', logoLight: './images/krwn/logo.png', favicon: '✂️',
+    heroImage: './images/krwn/logo.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points KRWN',
+    theme: { primary: '#000000', primaryLight: '#222', accent: '#B8860B', accentLight: '#DAA520', accentDark: '#8B6914', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Produit capillaire gratuit', points_required: 100, type: 'free_service', value: 'produit' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Coupe gratuite', points_required: 500, type: 'free_service', value: 'coupe' },
+      { id: 4, name: 'Forfait complet gratuit', points_required: 1000, type: 'free_service', value: 'forfait' },
+    ],
+    referralMessage: 'Rejoins KRWN et obtiens 75 points gratuits!',
+    phone: '418-805-6611', address: '827 Ave Myrand, Sainte-Foy',
+  },
+
+  'le-kollectiv': {
+    businessName: 'Le Kollectiv', slug: 'le-kollectiv', tagline: 'Salon de coiffure au coeur de Limoilou', logo: './images/le-kollectiv/logo.jpg', logoLight: './images/le-kollectiv/logo.jpg', favicon: '💇',
+    heroImage: './images/le-kollectiv/logo.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Kollectiv',
+    theme: { primary: '#2C3E50', primaryLight: '#34495E', accent: '#E67E22', accentLight: '#F39C12', accentDark: '#D35400', bg: '#FDF8F2', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Soin capillaire gratuit', points_required: 150, type: 'free_service', value: 'soin' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Coupe gratuite', points_required: 500, type: 'free_service', value: 'coupe' },
+      { id: 4, name: 'Coloration gratuite', points_required: 1200, type: 'free_service', value: 'coloration' },
+    ],
+    referralMessage: 'Rejoins Le Kollectiv et obtiens 75 points gratuits!',
+    phone: '418-523-3682', address: '446 Ch de la Canardière, Limoilou',
+  },
+
+  'parikart': {
+    businessName: 'Parikart', slug: 'parikart', tagline: 'Coiffure et esthétique complète', logo: './images/parikart/logo.png', logoLight: './images/parikart/logo.png', favicon: '💆',
+    heroImage: './images/parikart/logo.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Parikart',
+    theme: { primary: '#D4A76A', primaryLight: '#E0BB88', accent: '#B8860B', accentLight: '#DAA520', accentDark: '#8B6914', bg: '#FDF8F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Soin mains gratuit', points_required: 150, type: 'free_service', value: 'mains' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Coupe gratuite', points_required: 500, type: 'free_service', value: 'coupe' },
+      { id: 4, name: 'Forfait beauté complet', points_required: 1200, type: 'free_service', value: 'forfait' },
+    ],
+    referralMessage: 'Rejoins Parikart et obtiens 75 points gratuits!',
+    phone: '418-838-6600', address: '65 Rte du Président-Kennedy, Lévis',
+  },
+
+  'au-bonheur-des-pains': {
+    businessName: 'Au Bonheur des Pains', slug: 'au-bonheur-des-pains', tagline: 'Boulangerie artisanale', logo: null, logoLight: null, favicon: '🥐',
+    heroImage: './images/au-bonheur-des-pains/hero.png', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Bonheur',
+    theme: { primary: '#8B5A2B', primaryLight: '#A0522D', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Viennoiserie gratuite', points_required: 100, type: 'free_service', value: 'viennoiserie' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Sandwich gratuit', points_required: 500, type: 'free_service', value: 'sandwich' },
+      { id: 4, name: '25$ de crédit', points_required: 1000, type: 'free_service', value: 'credit25' },
+    ],
+    referralMessage: 'Rejoins Au Bonheur des Pains et obtiens 75 points gratuits!',
+    phone: '418-496-6960', address: '1810 Route des Rivières, Lévis',
+  },
+
+  'borderon-fils': {
+    businessName: 'Borderon & Fils', slug: 'borderon-fils', tagline: 'Boulangerie artisanale depuis 30 ans', logo: './images/borderon-fils/logo.jpg', logoLight: './images/borderon-fils/logo.jpg', favicon: '🍞',
+    heroImage: './images/borderon-fils/hero.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Borderon',
+    theme: { primary: '#5D4037', primaryLight: '#795548', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Croissant gratuit', points_required: 100, type: 'free_service', value: 'croissant' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Pain au levain gratuit', points_required: 500, type: 'free_service', value: 'pain' },
+      { id: 4, name: '30$ de crédit', points_required: 1000, type: 'free_service', value: 'credit30' },
+    ],
+    referralMessage: 'Rejoins Borderon & Fils et obtiens 75 points gratuits!',
+    phone: '418-521-5757', address: '1191 Ave Cartier, Québec',
+  },
+
+  'le-gout-du-plaisir': {
+    businessName: 'Le Goût du Plaisir', slug: 'le-gout-du-plaisir', tagline: 'Boulangerie, pâtisserie et sandwichs', logo: './images/le-gout-du-plaisir/logo.png', logoLight: './images/le-gout-du-plaisir/logo.png', favicon: '🎂',
+    heroImage: './images/le-gout-du-plaisir/hero.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Plaisir',
+    theme: { primary: '#A0522D', primaryLight: '#CD853F', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FDF6EF', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Pâtisserie gratuite', points_required: 100, type: 'free_service', value: 'patisserie' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Gâteau gratuit', points_required: 500, type: 'free_service', value: 'gateau' },
+      { id: 4, name: '25$ de crédit', points_required: 1000, type: 'free_service', value: 'credit25' },
+    ],
+    referralMessage: 'Rejoins Le Goût du Plaisir et obtiens 75 points gratuits!',
+    phone: '418-914-8998', address: '905 Rue de Nemours, Charlesbourg',
+  },
+
+  'limoncello': {
+    businessName: 'Limoncello Bistro Italien', slug: 'limoncello', tagline: 'Bistro italien au coeur de Limoilou', logo: './images/limoncello/logo.jpg', logoLight: './images/limoncello/logo.jpg', favicon: '🍝',
+    heroImage: './images/limoncello/hero.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Limoncello',
+    theme: { primary: '#E74C3C', primaryLight: '#EC7063', accent: '#F39C12', accentLight: '#F7DC6F', accentDark: '#D68910', bg: '#FFF8F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Dessert gratuit', points_required: 100, type: 'free_service', value: 'dessert' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Pasta gratuite', points_required: 500, type: 'free_service', value: 'pasta' },
+      { id: 4, name: 'Repas pour 2 offert', points_required: 1500, type: 'free_service', value: 'repas2' },
+    ],
+    referralMessage: 'Rejoins Limoncello et obtiens 75 points gratuits!',
+    phone: '418-204-0683', address: '523 3e Ave, Limoilou',
+  },
+
+  'boutique-mur': {
+    businessName: 'Boutique MUR', slug: 'boutique-mur', tagline: 'Mode européenne haut de gamme', logo: './images/boutique-mur/logo.png', logoLight: './images/boutique-mur/logo.png', favicon: '👗',
+    heroImage: './images/boutique-mur/hero.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points MUR',
+    theme: { primary: '#2C2C2C', primaryLight: '#444', accent: '#B8860B', accentLight: '#DAA520', accentDark: '#8B6914', bg: '#FAFAF8', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Accessoire gratuit', points_required: 200, type: 'free_service', value: 'accessoire' },
+      { id: 2, name: '15% de rabais', points_required: 400, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Pièce en solde offerte', points_required: 800, type: 'free_service', value: 'solde' },
+      { id: 4, name: '50$ de crédit', points_required: 1500, type: 'free_service', value: 'credit50' },
+    ],
+    referralMessage: 'Rejoins Boutique MUR et obtiens 75 points gratuits!',
+    phone: '418-780-0882', address: '2450 Bd Laurier, Place Ste-Foy',
+  },
+
+  'article-721': {
+    businessName: 'Article 721', slug: 'article-721', tagline: 'Créations locales et trouvailles uniques', logo: './images/article-721/logo.jpg', logoLight: './images/article-721/logo.jpg', favicon: '🎁',
+    heroImage: './images/article-721/hero.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points 721',
+    theme: { primary: '#E67E22', primaryLight: '#F39C12', accent: '#2C3E50', accentLight: '#34495E', accentDark: '#1A252F', bg: '#FFF8F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Carte gratuite', points_required: 50, type: 'free_service', value: 'carte' },
+      { id: 2, name: '10% de rabais', points_required: 200, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Chandelle gratuite', points_required: 400, type: 'free_service', value: 'chandelle' },
+      { id: 4, name: '25$ de crédit', points_required: 800, type: 'free_service', value: 'credit25' },
+    ],
+    referralMessage: 'Rejoins Article 721 et obtiens 75 points gratuits!',
+    phone: '581-742-4333', address: '721 3e Ave, Limoilou',
+  },
+
+  'atout-poils': {
+    businessName: 'Atout-Poils', slug: 'atout-poils', tagline: 'Toilettage pour chiens et chats', logo: null, logoLight: null, favicon: '🐕',
+    heroImage: './images/atout-poils/hero.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Poils',
+    theme: { primary: '#27AE60', primaryLight: '#2ECC71', accent: '#16A085', accentLight: '#1ABC9C', accentDark: '#0E6655', bg: '#F0FFF4', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Coupe de griffes gratuite', points_required: 100, type: 'free_service', value: 'griffes' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Bain gratuit', points_required: 500, type: 'free_service', value: 'bain' },
+      { id: 4, name: 'Toilettage complet gratuit', points_required: 1000, type: 'free_service', value: 'toilettage' },
+    ],
+    referralMessage: 'Rejoins Atout-Poils et obtiens 75 points gratuits!',
+    phone: '418-838-4322', address: '4081 Rue des Turquoises, Lévis',
+  },
 };
 
 // Detect tenant from URL: ?tenant=slug or subdomain
