@@ -28,21 +28,8 @@
   --font: 'Inter', "hero-new", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* === DARK MODE === */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0F1115;
-    --bg-card: #1A1D23;
-    --bg-warm: #23272F;
-    --text: #F5F5F7;
-    --text-light: #B8BCC4;
-    --text-muted: #6B7280;
-    --border: rgba(255,255,255,0.08);
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3), 0 1px 4px rgba(0,0,0,0.2);
-    --shadow: 0 4px 16px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3);
-    --shadow-lg: 0 20px 60px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
-  }
-}
+/* === DARK MODE (scoped to root, not applied to .app to preserve tenant branding) === */
+/* Dark mode via prefers-color-scheme was removed: it conflicts with tenant-branded light themes. */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
