@@ -1,8 +1,18 @@
 import { useState, useEffect } from 'react'
-import { CreditCard, MapPin, Users, Gift, ChevronRight, LogOut } from 'lucide-react'
+import { CreditCard, MapPin, Users, Gift, ChevronRight, LogOut, Sparkles } from 'lucide-react'
+import confetti from 'canvas-confetti'
 import config from '../config'
 import { getClientTransactions, getClientById } from '../services/supabase'
 import { getTier, getNextTier, isBirthdayToday } from '../utils/tiers'
+
+function fireWelcomeConfetti() {
+  const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#C9A96E'
+  const accentDark = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark').trim() || '#B08D4F'
+  const accentLight = getComputedStyle(document.documentElement).getPropertyValue('--accent-light').trim() || '#D4BA8A'
+  const colors = [accent, accentDark, accentLight, '#FFFFFF']
+  confetti({ particleCount: 100, spread: 120, origin: { y: 0.3 }, colors, scalar: 1.2 })
+  setTimeout(() => confetti({ particleCount: 60, spread: 80, origin: { y: 0.4 }, colors }), 250)
+}
 
 const typeLabels = { purchase: 'Achat', visit: 'Visite', referral: 'Parrainage', redemption: 'Échange', manual: 'Manuel' }
 const typeIcons = {
@@ -17,8 +27,18 @@ const typeColors = { purchase: 'var(--success)', visit: 'var(--accent-dark)', re
 export default function Dashboard({ client, business, setClient, onLogout }) {
   const [transactions, setTransactions] = useState([])
   const [loading, setLoading] = useState(true)
+  const [showWelcome, setShowWelcome] = useState(() => localStorage.getItem('loyalty_just_signed_up') === '1')
 
   const rewards = (business?.rewards && business.rewards.length > 0) ? business.rewards : config.rewards
+
+  useEffect(() => {
+    if (showWelcome) {
+      localStorage.removeItem('loyalty_just_signed_up')
+      setTimeout(() => fireWelcomeConfetti(), 400)
+      const t = setTimeout(() => setShowWelcome(false), 4200)
+      return () => clearTimeout(t)
+    }
+  }, [showWelcome])
 
   useEffect(() => {
     if (!client?.id) return
@@ -51,6 +71,55 @@ export default function Dashboard({ client, business, setClient, onLogout }) {
 
   return (
     <div className="page-content">
+      {showWelcome && (
+        <div
+          onClick={() => setShowWelcome(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 1000,
+            background: 'rgba(15, 17, 21, 0.72)',
+            backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: 24, animation: 'fadeInUp 0.4s ease both',
+          }}
+        >
+          <div style={{
+            background: 'var(--bg-card)', borderRadius: 28, padding: '40px 28px',
+            maxWidth: 360, width: '100%', textAlign: 'center',
+            boxShadow: '0 30px 80px rgba(0,0,0,0.25)',
+            border: '1px solid rgba(201,169,110,0.2)',
+            position: 'relative', overflow: 'hidden',
+          }}>
+            <div style={{
+              position: 'absolute', top: -40, right: -40, width: 160, height: 160,
+              background: 'radial-gradient(circle, rgba(201,169,110,0.3) 0%, transparent 70%)',
+              borderRadius: '50%',
+            }} />
+            <div style={{
+              width: 72, height: 72, margin: '0 auto 20px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, var(--accent), var(--accent-dark))',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: 'white', boxShadow: '0 12px 32px rgba(201,169,110,0.35)',
+              animation: 'pulseGlow 2s ease-in-out infinite',
+            }}>
+              <Sparkles size={32} />
+            </div>
+            <h2 style={{ fontSize: 26, fontWeight: 800, color: 'var(--text)', marginBottom: 8, letterSpacing: -0.5 }}>
+              Bienvenue, {client?.name?.split(' ')[0] || 'ami'} !
+            </h2>
+            <p style={{ fontSize: 15, color: 'var(--text-light)', marginBottom: 20, lineHeight: 1.5 }}>
+              Votre compte {config.pointsLabel} est prêt. Accumulez des points à chaque visite et débloquez des récompenses exclusives.
+            </p>
+            <button
+              onClick={() => setShowWelcome(false)}
+              className="btn btn-primary"
+              style={{ width: 'auto', padding: '12px 28px' }}
+            >
+              Commencer
+            </button>
+          </div>
+        </div>
+      )}
       <div className="welcome-header">
         <div>
           <div className="welcome-sub">Bonjour,</div>

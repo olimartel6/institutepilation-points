@@ -61,6 +61,7 @@ function App() {
     if (phone) sendSMS('welcome', phone, business.name, { clientName: name, businessId: business.id, clientId: c.id })
     generateWalletPass(c.id)
     localStorage.setItem('loyalty_client', JSON.stringify(c))
+    localStorage.setItem('loyalty_just_signed_up', '1')
     setClient(c)
     setIsLoggedIn(true)
   }

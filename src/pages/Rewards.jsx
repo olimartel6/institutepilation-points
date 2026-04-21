@@ -1,7 +1,22 @@
 import { useState, useEffect } from 'react'
 import { Sparkles, DollarSign, Gem, Lock, X } from 'lucide-react'
+import confetti from 'canvas-confetti'
 import config from '../config'
 import { createRedemption, getClientById } from '../services/supabase'
+
+function fireConfetti() {
+  const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#C9A96E'
+  const accentDark = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark').trim() || '#B08D4F'
+  const accentLight = getComputedStyle(document.documentElement).getPropertyValue('--accent-light').trim() || '#D4BA8A'
+  const colors = [accent, accentDark, accentLight, '#FFFFFF']
+  const end = Date.now() + 900
+  ;(function frame() {
+    confetti({ particleCount: 5, angle: 60, spread: 60, origin: { x: 0, y: 0.7 }, colors })
+    confetti({ particleCount: 5, angle: 120, spread: 60, origin: { x: 1, y: 0.7 }, colors })
+    if (Date.now() < end) requestAnimationFrame(frame)
+  })()
+  confetti({ particleCount: 80, spread: 100, origin: { y: 0.5 }, colors, scalar: 1.1 })
+}
 
 const rewardIcons = {
   discount_percent: <Sparkles size={22} />,
@@ -41,6 +56,7 @@ export default function Rewards({ client, business, setClient }) {
         rewardName: reward.name,
         expiresAt: redemption.expires_at,
       })
+      fireConfetti()
     } catch (e) {
       setToast('Erreur: ' + (e.message || 'réessayez'))
       setTimeout(() => setToast(null), 3000)
@@ -192,7 +208,10 @@ export default function Rewards({ client, business, setClient }) {
                   <p className="reward-points">{reward.points_required.toLocaleString()} points</p>
                 </div>
                 <div className="reward-progress">
-                  <div className="reward-progress-bar" style={{ width: `${progress}%` }} />
+                  <div
+                    className={`reward-progress-bar${progress >= 100 ? ' complete' : progress >= 80 ? ' near-target' : ''}`}
+                    style={{ width: `${progress}%` }}
+                  />
                 </div>
               </div>
             </div>

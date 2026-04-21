@@ -25,20 +25,27 @@ export default function MyQR({ client }) {
 
       <div className="gold-line" style={{ margin: '12px auto 24px' }} />
 
-      <div style={{ textAlign: 'center', padding: '0 0 20px' }}>
+      <div style={{ textAlign: 'center', padding: '0 0 24px', position: 'relative' }}>
         <div style={{
-          display: 'inline-block', padding: 24,
-          background: 'white', borderRadius: 'var(--radius)',
-          boxShadow: 'var(--shadow-lg)',
-          border: '1px solid rgba(201,169,110,0.15)',
+          position: 'relative', display: 'inline-block', padding: 6,
+          background: 'linear-gradient(135deg, var(--accent), var(--accent-dark), var(--accent-light), var(--accent))',
+          backgroundSize: '300% 300%',
+          animation: 'shimmer 6s ease infinite',
+          borderRadius: 32,
+          boxShadow: '0 24px 60px rgba(201,169,110,0.25), 0 8px 20px rgba(0,0,0,0.08)',
         }}>
-          <img
-            src={`https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(user.id || 'demo-client')}`}
-            alt="Mon QR Code"
-            width={220}
-            height={220}
-            style={{ borderRadius: 8 }}
-          />
+          <div style={{
+            padding: 32, background: '#FFFFFF', borderRadius: 26,
+            position: 'relative', overflow: 'hidden',
+          }}>
+            <img
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(user.id || 'demo-client')}&margin=0`}
+              alt="Mon QR Code"
+              width={280}
+              height={280}
+              style={{ borderRadius: 12, display: 'block' }}
+            />
+          </div>
         </div>
       </div>
 
