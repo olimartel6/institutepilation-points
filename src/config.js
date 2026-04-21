@@ -739,6 +739,51 @@ const configs = {
     phone: '418-659-7786', address: 'Halles Sainte-Foy, Quebec',
   },
 
+  'philtre-cafe': {
+    businessName: 'Philtre Café', slug: 'philtre-cafe', tagline: 'Café de spécialité, végétarien et sans gluten', logo: null, logoLight: null, favicon: '☕',
+    heroImage: './images/philtre-cafe/interior.jpg', galleryImages: ['./images/philtre-cafe/latte.jpg'],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Philtre',
+    theme: { primary: '#2C3E50', primaryLight: '#34495E', accent: '#E67E22', accentLight: '#F39C12', accentDark: '#D35400', bg: '#FDF8F2', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Café gratuit', points_required: 100, type: 'free_service', value: 'cafe' },
+      { id: 2, name: '10% de rabais', points_required: 250, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Lunch gratuit', points_required: 500, type: 'free_service', value: 'lunch' },
+      { id: 4, name: '25$ de crédit', points_required: 1000, type: 'free_service', value: 'credit25' },
+    ],
+    referralMessage: 'Rejoins Philtre Café et obtiens 75 points gratuits!',
+    phone: '', address: '1467 rue Esther-Blondin, Cap-Rouge',
+  },
+
+  'clinique-foglia': {
+    businessName: 'Clinique Foglia', slug: 'clinique-foglia', tagline: 'Esthétique et massothérapie', logo: null, logoLight: null, favicon: '💆',
+    heroImage: './images/clinique-foglia/visage.jpg', galleryImages: ['./images/clinique-foglia/salon.jpg', './images/clinique-foglia/reception.jpg'],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Foglia',
+    theme: { primary: '#8E7CC3', primaryLight: '#A899D6', accent: '#B39DDB', accentLight: '#CE93D8', accentDark: '#7B1FA2', bg: '#F9F5FF', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Soin mains gratuit', points_required: 150, type: 'free_service', value: 'mains' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Soin visage gratuit', points_required: 600, type: 'free_service', value: 'visage' },
+      { id: 4, name: 'Massage 60min gratuit', points_required: 1200, type: 'free_service', value: 'massage' },
+    ],
+    referralMessage: 'Rejoins Clinique Foglia et obtiens 75 points gratuits!',
+    phone: '', address: 'Rue du Campanile, Sainte-Foy',
+  },
+
+  'salons-darbourg': {
+    businessName: 'Salons Darbourg', slug: 'salons-darbourg', tagline: 'Coiffure et esthétique', logo: './images/salons-darbourg/logo.png', logoLight: './images/salons-darbourg/logo.png', favicon: '✂️',
+    heroImage: './images/salons-darbourg/service.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Darbourg',
+    theme: { primary: '#D4A76A', primaryLight: '#E0BB88', accent: '#B8860B', accentLight: '#DAA520', accentDark: '#8B6914', bg: '#FDF8F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Produit gratuit', points_required: 150, type: 'free_service', value: 'produit' },
+      { id: 2, name: '15% de rabais', points_required: 300, type: 'discount_percent', value: 15 },
+      { id: 3, name: 'Soin esthétique gratuit', points_required: 500, type: 'free_service', value: 'soin' },
+      { id: 4, name: 'Forfait complet gratuit', points_required: 1200, type: 'free_service', value: 'forfait' },
+    ],
+    referralMessage: 'Rejoins Salons Darbourg et obtiens 75 points gratuits!',
+    phone: '', address: 'Place de la Cité, Sainte-Foy',
+  },
+
   'quai-1635': {
     businessName: 'Quai 1635', slug: 'quai-1635', tagline: 'Restaurant sur le fleuve', logo: null, logoLight: null, favicon: '⚓',
     heroImage: './images/quai-1635/hero.png', galleryImages: [],
