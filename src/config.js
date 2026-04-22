@@ -1128,6 +1128,156 @@ const configs = {
     referralMessage: 'Rejoins Champagne Chocolatier et obtiens 75 points gratuits!',
     phone: '418-522-0708', address: '525 rue Saint-Joseph Est, Saint-Roch',
   },
+
+  'erico': {
+    businessName: 'Érico Chocolaterie', slug: 'erico', tagline: 'Chocolatier créatif et musée du chocolat depuis 1987', logo: './images/erico/logo.jpg', logoLight: './images/erico/logo.jpg', favicon: '🍫',
+    heroImage: './images/erico/logo.jpg', galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Érico',
+    theme: { primary: '#3E2723', primaryLight: '#5D4037', accent: '#E67E22', accentLight: '#F39C53', accentDark: '#C05A15', bg: '#FBF6F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Chocolat chaud maison offert', points_required: 150, type: 'free_service', value: 'chocochaud' },
+      { id: 2, name: 'Boîte de truffes (6 morceaux)', points_required: 300, type: 'free_service', value: 'truffes' },
+      { id: 3, name: '10% de rabais en boutique', points_required: 500, type: 'discount_percent', value: 10 },
+      { id: 4, name: 'Coffret cadeau chocolats fins 50$', points_required: 1200, type: 'free_service', value: 'coffret' },
+    ],
+    referralMessage: 'Rejoins Érico Chocolaterie et obtiens 75 points gratuits!',
+    phone: '418-524-2122', address: '634 rue Saint-Jean, Québec',
+  },
+
+  'equilibre-traiteur': {
+    businessName: 'Équilibre Traiteur', slug: 'equilibre-traiteur', tagline: 'Traiteur boutique — produits fins du Québec', favicon: '🍱',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Équilibre',
+    theme: { primary: '#2E5D3A', primaryLight: '#4A7A55', accent: '#C9A96E', accentLight: '#DFC28E', accentDark: '#A88449', bg: '#F7F9F4', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Boîte à lunch offerte', points_required: 250, type: 'free_service', value: 'lunch' },
+      { id: 2, name: '10% sur commande événement', points_required: 500, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Plateau fromages-charcuteries 4 pers.', points_required: 800, type: 'free_service', value: 'plateau' },
+      { id: 4, name: 'Service traiteur 100$ offert', points_required: 1500, type: 'free_service', value: 'service100' },
+    ],
+    referralMessage: 'Rejoins Équilibre Traiteur et obtiens 75 points gratuits!',
+    phone: '', address: 'Vieux-Limoilou, Québec',
+  },
+
+  'la-souche': {
+    businessName: 'La Souche Microbrasserie', slug: 'la-souche', tagline: 'Microbrasserie artisanale — 15 bières d\'auteur', favicon: '🍺',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Souche',
+    theme: { primary: '#3E2A1F', primaryLight: '#5C4230', accent: '#D9A441', accentLight: '#E8BC6D', accentDark: '#B88630', bg: '#FBF6ED', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Pinte maison offerte', points_required: 200, type: 'free_service', value: 'pinte' },
+      { id: 2, name: 'Dégustation 4 bières', points_required: 400, type: 'free_service', value: 'degustation' },
+      { id: 3, name: 'Planche charcuterie-fromages', points_required: 600, type: 'free_service', value: 'planche' },
+      { id: 4, name: 'Growler 2L offert', points_required: 1000, type: 'free_service', value: 'growler' },
+    ],
+    referralMessage: 'Rejoins La Souche et obtiens 75 points gratuits!',
+    phone: '581-742-1144', address: '801 Chemin de la Canardière, Limoilou',
+  },
+
+  'librairie-morency': {
+    businessName: 'Librairie Morency', slug: 'librairie-morency', tagline: 'Librairie indépendante de Limoilou depuis 1994', favicon: '📚',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Morency',
+    theme: { primary: '#1A3A5C', primaryLight: '#2E5178', accent: '#C96B4F', accentLight: '#DB8A72', accentDark: '#A44E36', bg: '#F8F5F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Livre de poche au choix', points_required: 250, type: 'free_service', value: 'poche' },
+      { id: 2, name: '10% de rabais', points_required: 400, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Roman édition courante', points_required: 700, type: 'free_service', value: 'roman' },
+      { id: 4, name: '50$ de crédit librairie', points_required: 1200, type: 'free_service', value: 'credit50' },
+    ],
+    referralMessage: 'Rejoins Librairie Morency et obtiens 75 points gratuits!',
+    phone: '', address: '657 3e Avenue, Limoilou',
+  },
+
+  'yannick-fromagerie': {
+    businessName: 'Yannick Fromagerie', slug: 'yannick-fromagerie', tagline: 'Fromages d\'ici et d\'ailleurs — importations privées', favicon: '🧀',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Yannick',
+    theme: { primary: '#6B2C2C', primaryLight: '#8B3A3A', accent: '#E8B923', accentLight: '#F0CE52', accentDark: '#C29A1C', bg: '#FBF7EF', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Plateau dégustation 3 fromages', points_required: 250, type: 'free_service', value: 'plateau3' },
+      { id: 2, name: '10% de rabais', points_required: 400, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Fromage AOP importation privée', points_required: 700, type: 'free_service', value: 'aop' },
+      { id: 4, name: 'Panier cadeau gastronomique 75$', points_required: 1500, type: 'free_service', value: 'panier75' },
+    ],
+    referralMessage: 'Rejoins Yannick Fromagerie et obtiens 75 points gratuits!',
+    phone: '', address: 'Limoilou, Québec',
+  },
+
+  'bijouterie-langlois': {
+    businessName: 'Bijouterie Langlois', slug: 'bijouterie-langlois', tagline: 'Joaillerie sur mesure — conçue et fabriquée à Québec', favicon: '💎',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 5, referralBonus: 150, visitBonus: 50, pointsLabel: 'Points Langlois',
+    theme: { primary: '#1A1A1A', primaryLight: '#333333', accent: '#D4AF37', accentLight: '#E8C968', accentDark: '#A68928', bg: '#FAFAF7', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Nettoyage et polissage offert', points_required: 300, type: 'free_service', value: 'nettoyage' },
+      { id: 2, name: '10% sur achats', points_required: 600, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Paire de boucles d\'oreilles signature', points_required: 1000, type: 'free_service', value: 'boucles' },
+      { id: 4, name: '250$ de crédit en boutique', points_required: 2500, type: 'free_service', value: 'credit250' },
+    ],
+    referralMessage: 'Rejoins Bijouterie Langlois et obtiens 150 points gratuits!',
+    phone: '', address: 'Saint-Roch, Québec',
+  },
+
+  'cremerie-st-sauveur': {
+    businessName: 'Crèmerie Saint-Sauveur', slug: 'cremerie-st-sauveur', tagline: 'Gelato, soft et produits locaux au cœur de Saint-Sauveur', logo: './images/cremerie-st-sauveur/logo.jpg', logoLight: './images/cremerie-st-sauveur/logo.jpg', favicon: '🍦',
+    heroImage: './images/cremerie-st-sauveur/logo.jpg', galleryImages: [],
+    pointsPerDollar: 20, referralBonus: 50, visitBonus: 15, pointsLabel: 'Points Crèmerie',
+    theme: { primary: '#C65D7B', primaryLight: '#D57B94', accent: '#F2C57C', accentLight: '#F7D7A1', accentDark: '#D9A656', bg: '#FDF5F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Cornet format régulier', points_required: 150, type: 'free_service', value: 'cornet' },
+      { id: 2, name: 'Milk-shake maison', points_required: 300, type: 'free_service', value: 'milkshake' },
+      { id: 3, name: 'Gelato format jumbo', points_required: 500, type: 'free_service', value: 'jumbo' },
+      { id: 4, name: 'Carte cadeau 25$', points_required: 800, type: 'free_service', value: 'carte25' },
+    ],
+    referralMessage: 'Rejoins Crèmerie Saint-Sauveur et obtiens 50 points gratuits!',
+    phone: '418-657-7995', address: '204 rue Saint-Vallier Ouest, Saint-Sauveur',
+  },
+
+  'la-reserve': {
+    businessName: 'La Réserve Épicerie Fine', slug: 'la-reserve', tagline: 'Produits d\'importation italienne, grecque et espagnole', favicon: '🥂',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Réserve',
+    theme: { primary: '#5C1A1A', primaryLight: '#7E2C2C', accent: '#D4A76A', accentLight: '#E0BB88', accentDark: '#B88D52', bg: '#FBF5F0', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Plateau charcuterie 3 viandes', points_required: 300, type: 'free_service', value: 'charcut' },
+      { id: 2, name: 'Bouteille d\'huile d\'olive extra-vierge', points_required: 500, type: 'free_service', value: 'huile' },
+      { id: 3, name: '10% sur l\'épicerie', points_required: 700, type: 'discount_percent', value: 10 },
+      { id: 4, name: 'Panier italien gourmand 75$', points_required: 1500, type: 'free_service', value: 'panier75' },
+    ],
+    referralMessage: 'Rejoins La Réserve et obtiens 75 points gratuits!',
+    phone: '418-914-5061', address: '994 3e Avenue, Limoilou',
+  },
+
+  'nano-cinco': {
+    businessName: 'Nano Cinco', slug: 'nano-cinco', tagline: 'Nano-brasserie artisanale — IPA, sours et barrel-aged', favicon: '🍻',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Nano',
+    theme: { primary: '#8B2C2C', primaryLight: '#A64545', accent: '#F2C057', accentLight: '#F7D581', accentDark: '#D4A42F', bg: '#FBF6EE', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Pinte maison offerte', points_required: 200, type: 'free_service', value: 'pinte' },
+      { id: 2, name: 'Dégustation 4 styles', points_required: 400, type: 'free_service', value: 'flight' },
+      { id: 3, name: 'Croissant-croissant fait maison', points_required: 500, type: 'free_service', value: 'croissant' },
+      { id: 4, name: 'Tournée privée de la brasserie', points_required: 1000, type: 'free_service', value: 'tour' },
+    ],
+    referralMessage: 'Rejoins Nano Cinco et obtiens 75 points gratuits!',
+    phone: '', address: '236 3e Rue, Limoilou',
+  },
+
+  'librairie-pantoute': {
+    businessName: 'Librairie Pantoute', slug: 'librairie-pantoute', tagline: 'Librairie indépendante — Saint-Roch et Vieux-Québec', logo: './images/librairie-pantoute/logo.jpg', logoLight: './images/librairie-pantoute/logo.jpg', favicon: '📖',
+    heroImage: null, galleryImages: [],
+    pointsPerDollar: 10, referralBonus: 75, visitBonus: 25, pointsLabel: 'Points Pantoute',
+    theme: { primary: '#2D4A3A', primaryLight: '#426150', accent: '#C07548', accentLight: '#D18D64', accentDark: '#A45C32', bg: '#F7F4EE', font: 'system-ui, sans-serif' },
+    rewards: [
+      { id: 1, name: 'Livre de poche au choix', points_required: 200, type: 'free_service', value: 'poche' },
+      { id: 2, name: '10% de rabais en boutique', points_required: 400, type: 'discount_percent', value: 10 },
+      { id: 3, name: 'Signature ou rencontre auteur', points_required: 700, type: 'free_service', value: 'signature' },
+      { id: 4, name: '50$ de crédit librairie', points_required: 1200, type: 'free_service', value: 'credit50' },
+    ],
+    referralMessage: 'Rejoins Librairie Pantoute et obtiens 75 points gratuits!',
+    phone: '', address: '286 rue Saint-Joseph Est, Saint-Roch',
+  },
 };
 
 // Detect tenant from URL: ?tenant=slug or subdomain
