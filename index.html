@@ -14,5 +14,29 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Loggic Track — minimal demo view tracker.
+      // Owner is excluded by visiting any demo once with ?me=1, which sets a
+      // localStorage flag that suppresses tracking forever on that browser.
+      (function () {
+        try {
+          var p = new URLSearchParams(location.search);
+          if (p.get("me") === "1") localStorage.setItem("loggic_me", "1");
+          if (localStorage.getItem("loggic_me") === "1") return;
+          var tenant = p.get("tenant");
+          if (!tenant || !/^[\w-]+$/.test(tenant)) return;
+          var ua = navigator.userAgent || "";
+          if (/headless|googlebot|bingbot|crawler|spider|slurp/i.test(ua)) return;
+          setTimeout(function () {
+            fetch("https://loggic-track.oliviermartel2006.workers.dev/track", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ tenant: tenant, source: "demo" }),
+              keepalive: true,
+            }).catch(function () {});
+          }, 800);
+        } catch (e) { /* never break the app */ }
+      })();
+    </script>
   </body>
 </html>
